@@ -1,0 +1,10 @@
+.venv/
+data/
+results/**/cache/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pt
+*.mlpackage
+.pytest_cache/

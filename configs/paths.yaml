@@ -1,0 +1,73 @@
+# Dataset and tools paths configuration for CARLE experiments
+# All scripts must read paths from this file.
+
+ffmpeg_bin: "C:/MediaToolkit/ffmpeg.exe"
+
+datasets:
+  nuscenes:
+    root: "data/nuscenes"
+    version: "v1.0-mini"
+    target_path: "C:/PhD/TS BEV/TS BEV CODE/dataset/nuScenes"
+    has_samples: true
+    has_sweeps: true
+    scenes_count: 10
+    keyframes_count: 404
+    total_images_samples: 2424
+  
+  cityscapes:
+    root: "data/cityscapes"
+    gt_fine: "data/cityscapes/gtFine_trainvaltest/gtFine"
+    left_img8bit: "data/cityscapes/leftImg8bit_trainvaltest/leftImg8bit"
+    target_path: "C:/PhD/NetSegNav"
+    has_sequence: false
+    splits:
+      train: 2975
+      val: 500
+      test: 1525
+    total_images: 5000
+
+  idd:
+    root: "data/idd"
+    gt_fine: "data/idd/gtFine"
+    left_img8bit: "data/idd/leftImg8bit"
+    target_path: "C:/PhD/Dataset/IDD 20K II"
+    total_images: 10098
+
+  field_videos:
+    root: "data/field_videos"
+    target_path: "C:/PhD/Semantic Depth/realtime/data/videos"
+    videos:
+      - name: "sikim.mp4"
+        duration: "00:01:03.74"
+        fps: 29.92
+        resolution: "848x478"
+      - name: "india bolpur.mp4"
+        duration: "00:00:08.01"
+        fps: 30.01
+        resolution: "848x478"
+      - name: "bhubaneswar night light.mp4"
+        duration: "00:01:00.85"
+        fps: 29.87
+        resolution: "478x850"
+      - name: "dhaka night light.mp4"
+        duration: "00:00:31.20"
+        fps: 24.74
+        resolution: "1024x576"
+      - name: "dhaka.mp4"
+        duration: "00:00:11.17"
+        fps: 24.00
+        resolution: "1024x576"
+      - name: "malaysia.mp4"
+        duration: "00:00:16.41"
+        fps: 29.67
+        resolution: "848x478"
+      - name: "00a0f008-3c67908e.mov"
+        duration: "00:00:40.07"
+        fps: 30.20
+        resolution: "1280x720"
+        subfolder: "bdd100k"
+      - name: "challenge_video.mp4"
+        duration: "00:00:16.15"
+        fps: 29.97
+        resolution: "1280x720"
+        subfolder: "kitti"
