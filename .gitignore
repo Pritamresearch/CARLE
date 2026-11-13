@@ -1,5 +1,6 @@
 .venv/
 data/
+legacy_local/
 results/**/cache/
 __pycache__/
 *.pyc
