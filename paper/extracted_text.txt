@@ -1,0 +1,420 @@
+--- PAGE 1 ---
+Semantic-Domain Differential Compression for
+Real-Time V2X Communication
+No Author Given
+No Institute Given
+Abstract.Semantic scene sharing for collaborative perception in au-
+tonomous of semantic information via bandwidth-limited V2X links. Ex-
+isting techniques either send high-resolution segmentation masks or ap-
+ply on learned compression techniques leading to decoding costs at the
+receiver. In this paper we introduce CARLE (Class-Aware Run-Length
+Encoding), a simple, deterministic compression scheme of the semantic
+domain that only represents label changes between frames without es-
+timation, or models. Consecutive segmentation masks are compared on
+a pixel level; areas where the class label has changed are filled with the
+label of the current frame, while positions a reserved null symbol (0), to
+create a sparse change map, which is as start-length-class triplets. The
+receiver maintains a semantic world map that is updated by the change-
+patches, in line with goal-oriented collaborative perception. Evaluated
+across three datasets under CPU-only constraints2,424 nuScenes Mini
+frames,1,073field-testframes,and1,487CityscapespanopticpairsCARLE
+achieves265.1×at60.40ms,884×at17.97ms,and179,346×at179.44ms
+respectively, with mIoU=1.00 and no decoder requirement.
+Keywords:SemanticCommunication·V2XNetworks·AutonomousVe-
+hicles·Semantic Segmentation·Differential Compression
+1 Introduction
+Autonomous vehicles (AVs) navigating dense and unstructured trafficcharacter-
+istic of Asia-Pacific environmentsrely on real-time semantic scene understand-
+ing for safe manoeuvring. Collaborative driving, where vehicles share percep-
+tual representations to improve situational awareness, has emerged as a key
+paradigm for handling scenarios beyond single-sensor reach [1,2]. The standard
+approach transmits full-resolution semantic segmentation masks over Vehicle-
+to-Everything (V2X) links. Under 3GPP TR 38.885 in urban microcell con-
+straints, this is prohibitively bandwidth-intensive [3]: a single900×1600mask
+at 8 bits/pixel requires 11,520 Kb per frame, and modern AVs carry 6 or more
+cameras, yielding a combined raw bitrate exceeding 69,120 Kb/frame.
+Existing approaches address this in two ways, both with significant limita-
+tions in all of them. Communication-efficient collaborative perception schemes
+such as Where2comm [4] and feature compression methods based on heavy back-
+bones such as ResNet-101 or PointNet++ [1] reduce raw data volume but re-
+quire full mask reconstruction or deep decoding at the receiver, imposing latency
+
+--- PAGE 2 ---
+2 No Author Given
+Fig.1: CARLE on-vehicle semantic compression pipeline.
+and compute overhead impractical on embedded edge nodes. Generic lossless
+codecs LZ4r [5] and SnappyR [6] achieve high throughput via byte-level match-
+finding inherited from the Lempel–Ziv family [7], while video codecs DVC [8]
+and VVC [9] exploit temporal dependencies using motion estimation and resid-
+ual coding in pixel space. Critically, none of these exploit the discrete structure
+of semantic label maps, and all treat each frame independently or operate on
+raw pixel valuesignoring the dominant source of redundancy in driving scenes.
+Goal-orientedsemanticcommunication[10–12]advocatestransmittingonlytask-
+relevant information, yet existing instantiations still rely on learned models or
+frame-independent codecs that discard temporal structure.
+Akeyobservationmotivatingthisworkistemporal sparsity:thevastmajority
+of pixels carry the same semantic label across consecutive frames. Our empirical
+analysis across three datasets confirms this at scale. In 10 nuScenes Mini scenes,
+only 4.5% of pixels change class on average (median 1.0%). Among 1,073 real-
+worldfield-testframes,48.8%exhibitzerosemanticchangeandthemedianactive
+changed-pixel fraction (δpix) is just 0.35%. Across 1,487 Cityscapes panoptic
+mask pairs at1024×2048, only 0.007% of pixels differ on averageconfirming that
+structured semantic representations are overwhelmingly temporally stable even
+at high resolution. Lightweight segmentation architectures tailored for embedded
+deployment [13,14] produce exactly the discrete label maps whose temporal
+stability CARLE is designed to exploit.
+We propose CARLE (Class-Aware Run-Length Encoding), a deterministic,
+training-freecompressionframeworkthatencodesonlythepixelswhosesemantic
+class has changed between frames, preserving thecurrentclass label at changed
+locations and zeroing unchanged regions. The transmitted payload is precisely
+thesemantic world-model updateneeded by the receivera direct instantiation of
+goal-oriented cooperative perception [11]. The contributions of this paper are:
+
+--- PAGE 3 ---
+Title Suppressed Due to Excessive Length 3
+–A class-preserving null-label differential operator that maps pixel-wise la-
+bel changes to a sparse representation: changed positions carry the current
+frame’s label; unchanged positions are assigned a reserved null symbol (0),
+unambiguously separating “no change” from “changed to classc” without
+motion estimation or learned models.
+–CARLE encoding of the sparse change map as start–length–class triplets,
+achieving265×–179,346×compressionat17.97–179.44ms(CPU-only),meet-
+ing the 3GPP V2X 100 ms constraint for field-test and nuScenes resolutions
+without GPU acceleration.
+–Empirical confirmation of scene-adaptive bandwidth across nuScenes Mini,
+real-world road videos, and Cityscapes panoptic masks (18 cities): CR scales
+inverselywithchanged-pixelfractionacrossfourordersofmagnitudewithout
+dataset-specific tuning, consistent with Eq. (5).
+2 Methodology
+2.1 Scene Simplification
+Let the input video be a sequence of frames{It}T t=1, whereI t ∈R H×W×3. Each
+frame is processed by a pre-trained segmentation modelSto produce a full
+label mapF t ∈Z H×W. To remove semantic noise and focus transmission on
+safety-critical content, all classes are projected onto:
+Ccritical ={c 1 =road, c2 =vehicle, c3 =pedestrian, c4 =other}(1)
+yielding a simplified mask ˜Ft where non-critical pixels map toc 4. This four-
+class representation retains all collision-relevant semantics while reducing label
+entropy.
+2.2 Class-Preserving Differential Map
+Given two consecutive simplified masksFt, Ft+1 ∈Z H×W, where class labels∈
+Ccritical ={1,2,3,4}and0is reserved as the null symbol, we define thesemantic
+difference map:
+Dt(i, j) =
+(
+Ft+1(i, j),ifF t+1(i, j)̸=F t(i, j)
+0,otherwise (2)
+When a pixel’s label changes between frames, the result carries theupdatedclass
+label from the current frameFt+1not a bitwise residual. When a pixel’s label is
+unchanged, the result is set to zero (0). This is illustrated in Fig. 2: if a vehicle
+(class 2) moves right, the pixel it vacated now belongs to road (class 1), so that
+position writesD t = 1; the new vehicle position writesD t = 2; pixels that
+remain road throughout writeDt = 0(null). The receiver can therefore directly
+apply every non-zero entry to its persistent semantic map without any additional
+decoding step.
+At the receiver, the persistent semantic map is initialised from the first full
+frame and updated by writing each triplet(s k, lk, ck)into the corresponding
+pixel positions; all positions absent fromRt+1 retain their previous label.
+
+--- PAGE 4 ---
+4 No Author Given
+Fig.2: Class-preserving differential encoding.
+2.3 Class-Aware Run-Length Encoding (CARLE)
+The 2D difference mapDt is flattened row-wise into a 1D vectordt =(D t)∈
+ZHW. Contiguous non-zero segments sharing the same class label are grouped
+into triplets:
+Rk = (sk, lk, ck)(3)
+wheres k is the start index,lk the run length, andck ∈ Ccritical the class label.
+The full compressed frame is:
+Rt+1 ={R k}Kt k=1, K t ≪HWfor temporally stable scenes (4)
+2.4 Compression Efficiency Analysis
+Let the uncompressed mask size beBraw =HW·log 2 Cbits. The compressed
+size is:
+BCARLE =K t ·(log 2 HW+ log 2 Lmax + log2 C)(5)
+whereL max is the maximum run length. The compression ratio is:
+CR= Braw
+BCARLE
+≫1whenK t ≪HW(6)
+Bandwidth scales directly with scene dynamics: in stable scenesKt →0and
+compression is maximal; in motion-rich scenesKt grows but remains bounded
+by the number of class boundary transitions, keeping bandwidth tractable with-
+out any explicit rate-control mechanism. In the degenerate case where all pixels
+change (Kt =HW),B CARLE approachesB raw and CR→1; however, this sce-
+nario does not arise in practice for structured semantic label maps, as confirmed
+by the 0.0074.5%δpix range observed across all three datasets.
+
+--- PAGE 5 ---
+Title Suppressed Due to Excessive Length 5
+Table 1: Ablation Study of CARLE Components (nuScenes Mini, CPU-only).
+Variant CR↑bpf (Kb)↓Lat. (ms) Mem. (MB)
+Frame-wise RLE 570.2 20.2 52.55 0.0024
+Change-mask only (No Encoding) 1.0 11,520.0 60.40 1.3733
+Change-mask + RLE 265.1 43.5 60.40 0.0052
+Change-mask + CARLE (No Class Reduction) 130.0 88.6 60.40 0.0106
+Change-mask + CARLE (Full) 265.1 43.5 60.40 0.0052
+3 Experiments
+3.1 Datasets and Evaluation Setup
+Experiments are conducted under CPU-only edge constraints with no GPU ac-
+celeration. The nuScenes Mini dataset [15] consists of 2,424 frame pairs across
+10 scenes and 6 cameras at900×1600resolution, using YOLO11n-seg as the
+upstream segmentation model (Braw = 11,520Kb/frame). The field-test dataset
+includes 1,073 frames from 4 real-world driving videos at848×478resolution
+(3,166.8 Kb/frame), covering static, mixed, and dense traffic conditions. The
+Cityscapes Panoptic Parts dataset [16], built on the Cityscapes benchmark [17],
+contains1,487consecutiveground-truthmaskpairsacross18citiesat1024×2048
+resolution (16,384≈Kb/frame). The implementation is publicly available at
+https://github.com/Pritamresearch/carle-v2x.
+3.2 Ablation Study
+Table 1 isolates the contribution of each pipeline component on nuScenes Mini.
+Frame-wise RLE achieves 570.2×by exploiting within-frame spatial homo-
+geneity, but retransmits all unchanged pixels on every frame. The change-mask-
+only variant confirms that the differential step alone is insufficient: without en-
+coding,thesparsechangemapoccupiesthesamesizeastherawmask(CR=1.0).
+Adding standard RLE recovers full compression (265.1×), demonstrating that
+temporalsparsity isthedominantfactor.However,applying CARLEwithoutthe
+four-class reduction results in a CR of 130.0×. because the increased diversity
+of labels causes runs across labels runs across class boundaries. The complete
+pipelinepixel-wise detection, four-class conversion, and CARLEachieves 265.1×
+at the smallest memory (0.0052 MB).
+3.3 Segmentation Backbone Sensitivity
+Table??shows the unexpected result that lighter, lower-accuracy instance mod-
+els have ahigherCR than heavier, more-accurate semantic models. YOLO11n-
+seg (2.9M parameters, 29.7% mAP) achieves 265.1×, outperforming LRASPP-
+MobileNetV3[18](3.2M,57.9%mIoU)at196.2×andDeepLabV3-MobileNetV3[19]
+at 191.0×. The mechanism is label map smoothness: lower-capacity models fewer
+class boundaries, producing bigger homogeneous regions, which lead longer runs
+
+--- PAGE 6 ---
+6 No Author Given
+Table 2: Segmentation Backbone Comparison in the CARLE Pipeline (nuScenes
+Mini,900×1600).
+Model Type Params Size Acc. ⋆ CR↑bpf↓Lat.
+(M) (MB) (×) (Kb) (ms)
+YOLO11n-segInstance2.9 6.029.7% mAP265.1 43.560.4
+YOLO11l-seg Instance 27.6 55.7 43.2% mAP 225.5 51.1 112.7
+LRASPP-MobileNetV3 Semantic 3.2 6.6 57.9% mIoU 196.2 58.748.0
+DeepLabV3-MobileNetV3 Semantic 11.0 22.2 60.3% mIoU 191.0 60.3 104.4
+YOLOv8n-seg Instance 3.4 7.1 30.5% mAP 162.6 70.8 105.6
+YOLOv8s-seg Instance 11.8 23.9 38.9% mAP 146.8 78.5 243.1
+Instance: mAP@50:95 on COCO val2017. Semantic: mIoU on Pascal VOC 2012.
+YOLO11n/YOLO11l/LRASPP/DeepLabV3: CoreML, Apple Neural Engine.
+YOLOv8: PyTorch CPU. Latency = inference + CARLE encoding.
+Table 3: Compression Benchmark on nuScenes Mini (2,424 frames,900×1600,
+CPU-only).∼: values from original publications.
+Method CR↑bpf (Kb)↓Lat. (ms)↓Mem. (MB)↓mIoU↑Decoder
+Raw Mask 1.0×11520.0 0.00 1.37 1.00 No
+Frame-wise RLE 458.8×25.1 3.05 1.38 1.00 No
+Delta Encoding 1.0×11520.0 0.11 1.37 1.00 No
+LZ4 167.1×68.9 0.55 1.38 1.00 No
+Snappy 21.0×548.7 0.290.071.00 No
+UCVC (2024) [20]∼50× ∼230∼116∼480∼0.91 Yes
+DVC∼27× ∼432∼192∼650∼0.87 Yes
+CARLE (Ours) 265.1×43.560.40 2.751.00 No
+of CARLE and fewer changed pixelsKt per differential step. This suggests a
+co-design guideline for edge V2X nodes: maximising segmentation smoothness
+rather than mIoU may may lead to more efficient communication.
+4 Results and Discussion
+4.1 Benchmark Compression Performance
+Table 3 compares CARLE to spatial, lossless, and learned baselines on nuScenes
+Mini (same CPU-only settings) conditions. Latencies are end-to-end (inference
+marked∼are from original papers on other hardware.
+There are three lessons. First, Delta Encoding achieves CR=1.0 even when
+computing inter-frame differences: it works in the pixel domain, it yields a dense
+residual as compressible no more compressible than the original mask, prov-
+ing that differencing alone, cannot rely on temporal differencing alone. Second,
+Frame-wise RLE achieves 458.8×via within-frame spatial homogeneity but re-
+transmits all pixels every frame. CARLE transmits only changed-label entries,
+reducing bpf to 43.5 Kb/frame37% below LZ4 and 13×below Snapplyby ex-
+ploiting label-space temporal sparsity. Third, learned codecs UCVC and DVC
+
+--- PAGE 7 ---
+Title Suppressed Due to Excessive Length 7
+Table 4: Per-Camera and Scene-Level Compression (nuScenes Mini,900×1600,
+YOLO11n-seg, CPU-only).
+Camera CR bpf Lat. Scene CR bpf Type
+(×) (Kb) (ms) (×) (Kb)
+CAM_FRONT 218.6 52.70 77.2 scene-10771000 11.5Sparse road
+CAM_FRONT_L 257.8 44.68 55.1 scene-0796 597 19.3 Low-traffic
+CAM_FRONT_R 220.1 52.33 63.8 scene-0757 411 28.0 Suburban
+CAM_BACK 300.5 38.34 62.2 scene-1094 342 33.7 Mixed
+CAM_BACK_L 414.1 27.82 46.0scene-0061 233 49.5 Urban
+CAM_BACK_R 272.9 42.21 58.2 scene-0916 146 78.9 Dense int.
+achieve lower CR (50×and 27×), require a decoder, consume two to three orders
+of magnitude more memory, and incur higher latency (∼116192 ms vs 60.40 ms),
+while sacrificing fidelity (mIoU∼0.870.91 vs 1.00). CARLE is the only method
+achieving lossless fidelity, no decoder, and sub-100 ms latency simultaneously on
+a CPU-only node.
+4.2 Per-Camera and Scene-Level Analysis
+Table??presents the performance of CARLE viewpoint and scene type in the
+10 nuScenes Mini scenes. The back cameras perform better than the front cam-
+eras CAM_BACK_LEFT reaches 414.1×vs 218.6×for CAM_FRONTbecause
+the forward camera view has the most of oncoming objects and lane change
+transitions, resulting in more changed pixels per differential step. This direc-
+tional CR asymmetry enables per-stream prioritization for multi-camera V2X
+pipelines. The 6-camera bandwidth of 258 Kb/frame is a 99.6% compression of
+the 69,120 Kb/frame raw data, which is compliant with 3GPP NR-V2X sidelink.
+Scene-level CR spans 146×to 1000×across the 10 scenes with no rate-control
+tuning, and that bandwidth grows with semantic activity.
+4.3 Real-World Field-Test Results
+Table5givesCARLEresultson1,073framesfrom4videosofresolution848×478.
+Video 4 (170×, 38.58 Kb/frame,δpix = 0.955%) is the closest closest to nuScenes
+conditions and gives similar performance: CARLE has the same bpf (38.58 vs
+43.5 Kb/frame) with a similar semantic load. The mean latency of 17.97 ms is
+3.4×faster than nuScenes, due to the smaller due to smaller frame sizes, not
+different algorithms, and 99.5% of frame encode in 30 mswell below the 3GPP
+deadline of 100 ms.
+4.4 Cross-Dataset Validation and Cityscapes Analysis
+Table??and Fig. 4 consolidate CARLE performance across all three datasets.
+OnCityscapes(1024×2048,1,487pairs),adjacentground-truthpairsyield179,346×
+
+--- PAGE 8 ---
+8 No Author Given
+Table 5: Field-Test Results (848×478, raw=3,166.8 Kb/frame, CPU-only).
+Video CR↑bpf (Kb)↓Lat. (ms)δ pix (%)
+Video 1 (Static road) 67557×0.05 14.90 0.000
+Video 2 (Mixed traffic) 9731×4.06 17.53 0.244
+Video 3 (Mixed + sparse) 35913×5.97 16.19 0.218
+Video 4 (Dense intersection) 170×38.58 23.40 0.955
+Overall (all diff) 33441×12.70 17.970.350
+Active frames only 884×24.78 20.91
+Fig.3: Real-time bandwidth on field-test Video 4. Four phases: start of traffic
+(01 s), inactivity (1.12.3 s), peak activity at 101 Kb/frame (2.44.5 s), and recov-
+ery (510 s). No rate-control signal used.
+Table 6: Cross-Dataset Summary of CARLE Performance.
+Dataset Res. Pairs CR (×) bpf (Kb) Lat. (ms)δ pix (%)
+Cityscapes GT1024×20481,487179,346 0.093179.44 0.007
+Field test (active)848×478547 884 24.78 20.91 0.350
+nuScenes Mini900×16002,364 265 43.01 60.40 4.500
+CR at 0.093 Kb/frame, consistent with their near-zeroδpix (0.007%). Low CR
+variability across 18 cities (std<3% of mean) suggests performance is governed
+by temporal change rate rather than scene content or geographic region. The
+mean latency of 179.44 ms exceeds the 3GPP constraint, attributable to the
+1.44×larger pixel count vs nuScenes; the tight latency distribution (std 25.52 ms
+vs 51.88 ms) confirms encoding cost is near-constant whenδpix →0.
+Fig. 4 compares the three datasets to the theoretical curve CR∝1/δpix from
+Eq. (5) (not fitted). All three points are close to this curve over four orders of
+magnitude in CR and three inδpix, covering various resolutions, capture methods
+
+--- PAGE 9 ---
+Title Suppressed Due to Excessive Length 9
+Fig.4: Cross-dataset CR vs.δpix (loglog). All three operating points lie close to
+the reference curve (no fitting), spanning four orders of magnitude in CR across
+datasets differing in resolution, modality, and region, supporting the theoretical
+model of Eq. (5).
+Fig.5: Latency CDF across all three datasets. Latency follows resolution order
+regardless of CR. Field test and nuScenes satisfy the 3GPP 100 ms constraint
+for>99.9% and>94.3% of frames; Cityscapes requires hardware acceleration at
+1024×2048.
+and locations. While three datasets do not establish universality, the consistency
+across such diverse conditions supports the theoretical model and indicates that
+CR is primarily determined byδpix rather than dataset-specific factors.
+
+--- PAGE 10 ---
+10 No Author Given
+4.5 Encoding Latency Analysis
+EncodinglatencyscaleswithimageresolutionratherthanCR:fieldtest(848×478,
+mean 17.97 ms), nuScenes (900×1600, 60.40 ms), and Cityscapes (1024×2048,
+179.44 ms) follow a strict resolution hierarchy despite spanning four orders of
+magnitude in CR, confirming that CARLE’s cost is dominated by theO(HW)
+pixel-wise comparison and run-length scanning steps rather than encoded run
+count.
+Fig.6: Mean latency by object class combination (field test, 1,069 frames). La-
+tency scales monotonically with semantic complexity (14.8723.93 ms), remaining
+within the 3GPP 100 ms budget.
+Field test and nuScenes satisfy the 3GPP 100 ms constraint for 99.9% and
+94.3% of frames respectively (Fig. 5); Cityscapes fails entirely at CPU-only
+throughput,establishingaresolutionceilingandmotivatinghardware-accelerated
+encoding as future work. Field-test latency increases monotonically with seman-
+tic complexity (Fig. 6): from 14.87 ms (no objects) to 23.93 ms (vehicle + pedes-
+trian + animal)an 8.06 ms range entirely within budgetreflecting the positive
+correlation between object count andKt.
+5 Conclusion
+This paper presented CARLE (Class-Aware Run-Length Encoding), a determin-
+istic, training-free framework that compresses semantic segmentation masks for
+V2X collaborative perception by transmitting only inter-frame label changes as
+startlengthclass triplets, with unchanged pixels set to a reserved null symbol (0),
+enabling direct receiver-side map updates without decoding. Evaluated across
+three CPU-only datasets2,424 nuScenes Mini frames, 1,073 field-test frames,
+and 1,487 Cityscapes panoptic pairsCARLE achieves 265.1×at 60.40 ms, 884×
+
+--- PAGE 11 ---
+Title Suppressed Due to Excessive Length 11
+at 17.97 ms, and 179,346×at 179.44 ms, all with mIoU=1.00 and no param-
+eter tuning. A combined 6-camera stream requires only 258 Kb/frame (99.6%
+reduction), meeting 3GPP NR-V2X sidelink constraints. Future work targets
+hardware-accelerated encoding, multi-vehicle scenarios, and compressed-domain
+inference on the CARLE triplet stream.
+References
+1. Yushan Han, Hui Zhang, Huifang Li, Yi Jin, Congyan Lang, and Yidong Li. Col-
+laborative perception in autonomous driving: Methods, datasets, and challenges.
+IEEE Intelligent Transportation Systems Magazine, 15(6):131–151, 2023.
+2. Runsheng Xu, Hao Xiang, Xin Xia, Xu Han, Jinlong Li, and Jiaqi Ma. Opv2v: An
+open benchmark dataset and fusion pipeline for perception with vehicle-to-vehicle
+communication. In2022 International Conference on Robotics and Automation
+(ICRA), pages 2583–2589, 2022.
+3. Tao Huang, Jianan Liu, Xi Zhou, Dinh C. Nguyen, Mostafa Rahimi Azghadi,
+Yuxuan Xia, Qing-Long Han, and Sumei Sun. Vehicle-to-everything cooperative
+perception for autonomous driving.Proceedings of the IEEE, 113(5):443–477, 2025.
+4. Yue Hu, Shaoheng Fang, Zixing Lei, Yiqi Zhong, and Siheng Chen. Where2comm:
+Communication-efficient collaborative perception via spatial confidence maps. In
+S. Koyejo, S. Mohamed, A. Agarwal, D. Belgrave, K. Cho, and A. Oh, editors,
+Advances in Neural Information Processing Systems, volume 35, pages 4874–4886.
+Curran Associates, Inc., 2022.
+5. Rui Chen and Lihao Xu. Lz4r - a new fast compression algorithm for high-speed
+data storage systems. In2023 Data Compression Conference (DCC), pages 1–1,
+2023.
+6. Rui Chen and Lihao Xu. Snappyr: A new high-speed lossless data compression
+algorithm. In2023 Data Compression Conference (DCC), pages 334–334, 2023.
+7. J. Ziv and A. Lempel. A universal algorithm for sequential data compression.
+IEEE Transactions on Information Theory, 23(3):337–343, 1977.
+8. Guo Lu, Wanli Ouyang, Dong Xu, Xiaoyun Zhang, Chunlei Cai, and Zhiyong
+Gao. Dvc: An end-to-end deep video compression framework. In2019 IEEE/CVF
+Conference on Computer Vision and Pattern Recognition (CVPR), pages 10998–
+11007, 2019.
+9. Benjamin Bross, Ye-Kui Wang, Yan Ye, Shan Liu, Jianle Chen, Gary J. Sullivan,
+and Jens-Rainer Ohm. Overview of the versatile video coding (vvc) standard and
+its applications.IEEE Transactions on Circuits and Systems for Video Technology,
+31(10):3736–3764, 2021.
+10. Deniz Gündüz, Zhijin Qin, Inaki Estella Aguerri, Harpreet S. Dhillon, Zhaohui
+Yang, Aylin Yener, Kai Kit Wong, and Chan-Byoung Chae. Beyond transmitting
+bits: Context, semantics, and task-oriented communications.IEEE Journal on
+Selected Areas in Communications, 41(1):5–41, 2023.
+11. Wenchao Wu, Yuanqing Yang, Yansha Deng, and A. Hamid Aghvami. Goal-
+oriented semantic communications for robotic waypoint transmission: The value
+and age of information approach.IEEE Transactions on Wireless Communica-
+tions, 23(12):18903–18915, 2024.
+12. Chengsi Liang, Hongyang Du, Yao Sun, Dusit Niyato, Jiawen Kang, Dezong Zhao,
+and Muhammad Ali Imran. Generative ai-driven semantic communication net-
+works: Architecture, technologies, and applications.IEEE Transactions on Cogni-
+tive Communications and Networking, 11(1):27–47, 2025.
+
+--- PAGE 12 ---
+12 No Author Given
+13. Pritam Chakraborty, Anjan Bandyopadhyay, Rimo Ghosh, and Ritobrata Sarkar.
+IndiRTS: Real time segmentation for autonomous vehicles for indian conditions.
+SN Comput. Sci., 6(2):93, 2025.
+14. Changqian Yu, Changxin Gao, Jingbo Wang, Gang Yu, Chunhua Shen, and Nong
+Sang. BiSeNet V2: Bilateral network with guided aggregation for real-time seman-
+tic segmentation.Int. J. Comput. Vis., 129(11):3051–3068, 2021.
+15. Holger Caesar, Varun Bankiti, Alex H. Lang, Sourabh Vora, Venice Erin Li-
+ong, Qiang Xu, Anush Krishnan, Yu Pan, Giancarlo Baldan, and Oscar Beijbom.
+nuscenes: A multimodal dataset for autonomous driving. In2020 IEEE/CVF Con-
+ference on Computer Vision and Pattern Recognition (CVPR), pages 11618–11628,
+2020.
+16. Daan de Geus, Panagiotis Meletis, Chenyang Lu, Xiaoxiao Wen, and Gijs Dubbel-
+man. Part-aware panoptic segmentation, 2021.
+17. Marius Cordts, Mohamed Omran, Sebastian Ramos, Timo Rehfeld, Markus En-
+zweiler, Rodrigo Benenson, Uwe Franke, Stefan Roth, and Bernt Schiele. The
+cityscapes dataset for semantic urban scene understanding. InProceedings of the
+IEEE Conference on Computer Vision and Pattern Recognition (CVPR), June
+2016.
+18. AndrewHoward,MarkSandler,GraceChu,Liang-ChiehChen,BoChen,Mingxing
+Tan, Weijun Wang, Yukun Zhu, Ruoming Pang, Vijay Vasudevan, Quoc V. Le,
+and Hartwig Adam. Searching for mobilenetv3. InProceedings of the IEEE/CVF
+International Conference on Computer Vision (ICCV), October 2019.
+19. Liang-Chieh Chen, George Papandreou, Florian Schroff, and Hartwig Adam.
+Rethinking atrous convolution for semantic image segmentation.CoRR,
+abs/1706.05587, 2017.
+20. Jiayu Yang, Wei Jiang, Yongqi Zhai, Chunhui Yang, and Ronggang Wang. Ucvc:
+A unified contextual video compression framework with joint p-frame and b-frame
+coding. In2024 Data Compression Conference (DCC), pages 382–391, 2024.
+

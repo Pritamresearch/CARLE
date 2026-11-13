@@ -71,3 +71,35 @@
 5. **nuScenes Sampling Rate**: Evaluated on keyframes (`samples`) at 2.00 Hz (500 ms gap), not streaming video rate (11.86 Hz, 84 ms gap).
 6. **Frame Counts & Pairs**: nuScenes 2,424 total frames - 60 starts = 2,364 pairs. Field videos 1,073 total frames - 4 starts = 1,069 pairs. 547 pairs corresponds to 2× subsampling.
 7. **DVC / UCVC in Table 3**: No code exists in either repository; marked `NOT_RUN` and flagged for removal.
+
+
+## Pre-Phase 1 Fixes & Verification
+**Date:** 2026-11-13  
+**Auditor:** Research Engineer Agent  
+
+### 1. CUDA-Torch Installation:
+- Replaced CPU torch with `torch-2.6.0+cu124` and `torchvision-0.21.0+cu124` in `.venv`.
+- Verified `torch.cuda.is_available() == True`. Device: `NVIDIA GeForce RTX 3050 6GB Laptop GPU` (Driver 592.82, 6.44 GB VRAM).
+- Segmentation model execution can now be run and timed on GPU, while all codec timing remains strictly pinned to CPU (single thread / fixed threads) as per requirements.
+
+### 2. Paper Reconciliation (ICDCIT 2027 PDF):
+- Obtained canonical conference paper `paper/ICDCIT_2027.pdf` from user download (`ICDCIT_2027_deferential_compression.pdf`).
+- Discovered author's revised LaTeX submission in `ICDCIT_2027_deferential_compression__REVISED_.zip` (`samplepaper.tex`), which clarifies:
+  *"Table 5 reports aggregate ratios. The submitted version averaged per-frame ratios, which are dominated by near-empty frames and overstate the bandwidth saving; the aggregate values above replace them."*
+- Fully re-keyed `results/phase0/reproduction.csv` to ICDCIT 2027 PDF Abstract and Tables 1–6.
+- Traced provenance of every number: confirmed that Tables 1, 2, 3, 4, 6 were generated with `legacy/pipelines/yolo11n.py` and `legacy/core/xor_rle.py` using bitwise XOR and `len(rle)*6` accounting, whereas `main_PIDNET.py` implements the class-preserving algorithm of Equation (2).
+
+### 3. Field Test Resolution:
+- Confirmed mathematical relationship: Total frames = 1,073 $\implies$ 1,069 differential pairs ($1,073 - 4$).
+- Section 2 states 48.8% zero-change pairs $\implies 51.2\%$ active pairs ($\delta_{pix} > 0$).
+- $1,069 \times 0.5117 = 547$ active pairs (exact match with Table 6 `Pairs: 547`).
+- Native $848 \times 478$ clips on disk: `india bolpur.mp4` (239 frames), `malaysia.mp4` (487 frames), `sikim.mp4` (1,907 frames).
+- Bolpur + Malaysia sum to 726 frames. To reach 1,073 frames requires 347 frames. Video 4 is 10 seconds (~300 frames).
+- As only 3 clips of $848 \times 478$ exist on disk, the 4th clip was either a clipped subset of `sikim.mp4` or an external clip not provided in `data/field_videos/`. Unambiguous identification of the 4th clip is indeterminate from disk alone.
+
+### 4. PNG Baseline (OpenCV level 9):
+- Benchmark executed via `experiments/test_png_baseline.py` on nuScenes 4-class label maps ($900 \times 1600$).
+- PNG level 9: **3,341.2 bytes/frame (26.73 Kb/frame)** | CR vs raw8: **431.0×** | CR vs raw2: **107.7×** | Latency: **19.08 ms** (CPU).
+- CARLE Canonical (class-preserving, 7-byte binary packets): **5,713.0 bytes/frame (45.70 Kb/frame)** | CR vs raw8: **252.1×** | CR vs raw2: **63.0×**.
+- CARLE Legacy XOR (`len*6`): 19,424.2 bytes/frame (155.39 Kb/frame).
+- Results logged to `results/phase0/png_baseline.csv`.

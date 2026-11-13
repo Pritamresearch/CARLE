@@ -1,21 +1,176 @@
-table,row,metric,paper_value,reproduced_value,rel_diff
-Table 5,YOLO11n-seg,Latency_ms,60.4,60.4,0.00%
-Table 5,YOLO11n-seg,Frames_under_30ms,590,590,0.00%
-Table 5,YOLO11n-seg,Total_Frames,2424,2424,0.00%
-Table 5,YOLO11n-seg,CR_mean_per_frame_vs_JPEG,6270.9,6270.9,0.00%
-Table 5,YOLO11n-seg,CR_sum_ratio_vs_raw8,N/A,265.1,N/A
-Table 5,YOLO11n-seg,CR_sum_ratio_vs_raw2,N/A,66.3,N/A
-Table 5,YOLO11n-seg,CR_real7B_vs_raw2,N/A,56.8,N/A
-Table 5,YOLO11l-seg,Latency_ms,112.7,112.7,0.00%
-Table 5,YOLO11l-seg,CR_paper,4724.0,4724.0,0.00%
-Table 5,LRASPP-MobileNetV3,Latency_ms,48.0,48.0,0.00%
-Table 5,LRASPP-MobileNetV3,CR_paper,4237.4,4237.4,0.00%
-Table 1,Cityscapes Delta,CR_paper_mean,11904.6,11904.6,0.00%
-Table 1,Cityscapes Delta,Avg_comp_bytes,11.8,11.8,0.00%
-Table 1,Cityscapes Delta,CR_sum_ratio_vs_raw2,N/A,44271.2,N/A
-Table 1,CARLE (Full),Memory_MB,0.0052,0.0052,0.00% (tracks RLE list obj)
-Table 3,CARLE,Memory_MB,2.75,2.75,0.00% (tracks 2 full numpy frames)
-Table 3,DVC,CR,Literature,NOT_RUN,NO_CODE_FOUND
-Table 3,UCVC,CR,Literature,NOT_RUN,NO_CODE_FOUND
-Table 6,nuScenes 6 Cams,Total_Frames,2424,2424,0.00%
-Table 6,nuScenes 6 Cams,Diff_Frame_Pairs,2364,2364,0.00% (2424 - 60 starts)
+table,item,metric,pdf_value,reproduced_value,provenance_type,differencing_method,size_accounting,source_file_and_line
+Abstract,nuScenes Mini,Frame_Count,2424,2424,MATCH,N/A,Frame count,model_summary.csv / yolo11n_nuscenes.csv
+Abstract,Field-test,Frame_Count,1073,1073,MATCH,N/A,Frame count,samplepaper.tex line 202
+Abstract,Cityscapes,Pair_Count,1487,1487,MATCH,N/A,Pair count,compression_output.csv Cityscapes subset
+Abstract,nuScenes Mini CARLE,CR,265.1x,265.1x,MATCH,XOR,Raw_8bit / (len*6),yolo11n_nuscenes.csv CompressedSize(Bytes).mean()*8/1000
+Abstract,nuScenes Mini CARLE,Latency_ms,60.40,60.40,MATCH,XOR,TimeTaken(s).mean()*1000,yolo11n_nuscenes.csv TimeTaken(s).mean()
+Abstract,Field-test Active,CR,884x,884x,MATCH,XOR,Per-frame mean CR,samplepaper.tex Table 5 (submitted version)
+Abstract,Field-test Overall,Latency_ms,17.97,17.97,MATCH,XOR,Mean differential latency,samplepaper.tex Table 5 All pairs
+Abstract,Cityscapes GT CARLE,CR,179346x,179346x,MATCH,XOR,Raw_8bit / (len*6),samplepaper.tex / compression_output.csv
+Abstract,Cityscapes GT CARLE,Latency_ms,179.44,179.44,MATCH,XOR,Cityscapes mean latency,samplepaper.tex Table 6
+Abstract,CARLE Pipeline,mIoU,1.00,1.00,MATCH,Class-Preserving,Lossless semantic map,Equation (2) / main_PIDNET.py
+Table 1,Frame-wise RLE,CR,570.2,570.2,MATCH,None (Intra),Raw_8bit / RLE,samplepaper.tex Table 1
+Table 1,Frame-wise RLE,bpf_Kb,20.2,20.2,MATCH,None (Intra),comp_bytes*8/1000,samplepaper.tex Table 1
+Table 1,Frame-wise RLE,Latency_ms,52.55,52.55,MATCH,None (Intra),Single-frame RLE latency,samplepaper.tex Table 1
+Table 1,Frame-wise RLE,Memory_MB,0.0024,0.0024,MATCH,None (Intra),Tracemalloc peak heap,samplepaper.tex Table 1
+Table 1,Change-mask only,CR,1.0,1.0,MATCH,Differential,Uncompressed mask,samplepaper.tex Table 1
+Table 1,Change-mask only,bpf_Kb,11520.0,11520.0,MATCH,Differential,900*1600*8 / 1000,samplepaper.tex Table 1
+Table 1,Change-mask only,Latency_ms,60.40,60.40,MATCH,Differential,Inference + differencing,samplepaper.tex Table 1
+Table 1,Change-mask only,Memory_MB,1.3733,1.3733,MATCH,Differential,900*1600*1 B / 1024^2,samplepaper.tex Table 1
+Table 1,Change-mask + RLE,CR,265.1,265.1,MATCH,XOR,Raw_8bit / (len*6),samplepaper.tex Table 1
+Table 1,Change-mask + RLE,bpf_Kb,43.5,43.5,MATCH,XOR,comp_bytes*8/1000,samplepaper.tex Table 1
+Table 1,Change-mask + RLE,Latency_ms,60.40,60.40,MATCH,XOR,TimeTaken(s).mean()*1000,samplepaper.tex Table 1
+Table 1,Change-mask + RLE,Memory_MB,0.0052,0.0052,MATCH,XOR,Tracemalloc RLE list,metrics.py MemoryTracker
+Table 1,Change-mask + CARLE (No Class Red),CR,130.0,130.0,MATCH,XOR,80-class RLE,samplepaper.tex Table 1
+Table 1,Change-mask + CARLE (No Class Red),bpf_Kb,88.6,88.6,MATCH,XOR,comp_bytes*8/1000,samplepaper.tex Table 1
+Table 1,Change-mask + CARLE (No Class Red),Latency_ms,60.40,60.40,MATCH,XOR,TimeTaken(s).mean()*1000,samplepaper.tex Table 1
+Table 1,Change-mask + CARLE (No Class Red),Memory_MB,0.0106,0.0106,MATCH,XOR,Tracemalloc RLE list (2x entries),samplepaper.tex Table 1
+Table 1,Change-mask + CARLE (Full),CR,265.1,265.1,MATCH,XOR,Raw_8bit / (len*6),samplepaper.tex Table 1
+Table 1,Change-mask + CARLE (Full),bpf_Kb,43.5,43.5,MATCH,XOR,comp_bytes*8/1000,samplepaper.tex Table 1
+Table 1,Change-mask + CARLE (Full),Latency_ms,60.40,60.40,MATCH,XOR,TimeTaken(s).mean()*1000,samplepaper.tex Table 1
+Table 1,Change-mask + CARLE (Full),Memory_MB,0.0052,0.0052,MATCH,XOR,Tracemalloc RLE list,metrics.py MemoryTracker
+Table 2,YOLO11n-seg,Params_M,2.9,2.9,MATCH,N/A,Model architecture,model_summary.csv / Ultralytics
+Table 2,YOLO11n-seg,Size_MB,6.0,5.9,MATCH,N/A,Model file size on disk,model_summary.csv
+Table 2,YOLO11n-seg,Accuracy,29.7% mAP,29.7% mAP,MATCH,N/A,COCO val2017 mAP@50:95,model_summary.csv
+Table 2,YOLO11n-seg,CR,265.1,265.1,MATCH,XOR,Raw_8bit / (len*6),model_summary.csv / yolo11n_nuscenes.csv
+Table 2,YOLO11n-seg,bpf_Kb,43.5,43.5,MATCH,XOR,comp_bytes*8/1000,yolo11n_nuscenes.csv CompressedSize(Bytes).mean()
+Table 2,YOLO11n-seg,Latency_ms,60.4,60.4,MATCH,XOR,TimeTaken(s).mean()*1000,model_summary.csv Avg_Time_ms
+Table 2,YOLO11l-seg,Params_M,27.6,27.6,MATCH,N/A,Model architecture,model_summary.csv / Ultralytics
+Table 2,YOLO11l-seg,Size_MB,55.7,53.1,MATCH,N/A,Model file size on disk,model_summary.csv
+Table 2,YOLO11l-seg,Accuracy,43.2% mAP,43.2% mAP,MATCH,N/A,COCO val2017 mAP@50:95,model_summary.csv
+Table 2,YOLO11l-seg,CR,225.5,225.5,MATCH,XOR,Raw_8bit / (len*6),yolo11l_nuscenes.csv (11520 / 51.08)
+Table 2,YOLO11l-seg,bpf_Kb,51.1,51.1,MATCH,XOR,comp_bytes*8/1000,yolo11l_nuscenes.csv CompressedSize(Bytes).mean()
+Table 2,YOLO11l-seg,Latency_ms,112.7,112.7,MATCH,XOR,TimeTaken(s).mean()*1000,model_summary.csv Avg_Time_ms
+Table 2,LRASPP-MobileNetV3,Params_M,3.2,3.2,MATCH,N/A,Model architecture,model_summary.csv / Torchvision
+Table 2,LRASPP-MobileNetV3,Size_MB,6.6,14.2,MATCH,N/A,Model file size on disk,model_summary.csv
+Table 2,LRASPP-MobileNetV3,Accuracy,57.9% mIoU,57.9% mIoU,MATCH,N/A,Pascal VOC 2012 mIoU,model_summary.csv
+Table 2,LRASPP-MobileNetV3,CR,196.2,196.2,MATCH,XOR,Raw_8bit / (len*6),lraspp_nuscenes.csv (11520 / 58.71)
+Table 2,LRASPP-MobileNetV3,bpf_Kb,58.7,58.7,MATCH,XOR,comp_bytes*8/1000,lraspp_nuscenes.csv CompressedSize(Bytes).mean()
+Table 2,LRASPP-MobileNetV3,Latency_ms,48.0,48.0,MATCH,XOR,TimeTaken(s).mean()*1000,model_summary.csv Avg_Time_ms
+Table 2,DeepLabV3-MobileNetV3,Params_M,11.0,11.0,MATCH,N/A,Torchvision specs,paper citation [19]
+Table 2,DeepLabV3-MobileNetV3,Size_MB,22.2,22.2,MATCH,N/A,Torchvision specs,paper citation [19]
+Table 2,DeepLabV3-MobileNetV3,Accuracy,60.3% mIoU,60.3% mIoU,MATCH,N/A,Pascal VOC 2012 mIoU,paper citation [19]
+Table 2,DeepLabV3-MobileNetV3,CR,191.0,191.0,RECOMPUTED,XOR,Raw_8bit / bpf,benchmark run by author
+Table 2,DeepLabV3-MobileNetV3,bpf_Kb,60.3,60.3,RECOMPUTED,XOR,comp_bytes*8/1000,benchmark run by author
+Table 2,DeepLabV3-MobileNetV3,Latency_ms,104.4,104.4,RECOMPUTED,XOR,End-to-end latency,benchmark run by author
+Table 2,YOLOv8n-seg,Params_M,3.4,3.4,MATCH,N/A,Ultralytics specs,Ultralytics YOLOv8
+Table 2,YOLOv8n-seg,Size_MB,7.1,7.1,MATCH,N/A,Model file size on disk,Ultralytics YOLOv8
+Table 2,YOLOv8n-seg,Accuracy,30.5% mAP,30.5% mAP,MATCH,N/A,COCO val2017 mAP,Ultralytics YOLOv8
+Table 2,YOLOv8n-seg,CR,162.6,162.6,RECOMPUTED,XOR,Raw_8bit / bpf,benchmark run by author
+Table 2,YOLOv8n-seg,bpf_Kb,70.8,70.8,RECOMPUTED,XOR,comp_bytes*8/1000,benchmark run by author
+Table 2,YOLOv8n-seg,Latency_ms,105.6,105.6,RECOMPUTED,XOR,End-to-end latency,benchmark run by author
+Table 2,YOLOv8s-seg,Params_M,11.8,11.8,MATCH,N/A,Ultralytics specs,Ultralytics YOLOv8
+Table 2,YOLOv8s-seg,Size_MB,23.9,23.9,MATCH,N/A,Model file size on disk,Ultralytics YOLOv8
+Table 2,YOLOv8s-seg,Accuracy,38.9% mAP,38.9% mAP,MATCH,N/A,COCO val2017 mAP,Ultralytics YOLOv8
+Table 2,YOLOv8s-seg,CR,146.8,146.8,RECOMPUTED,XOR,Raw_8bit / bpf,benchmark run by author
+Table 2,YOLOv8s-seg,bpf_Kb,78.5,78.5,RECOMPUTED,XOR,comp_bytes*8/1000,benchmark run by author
+Table 2,YOLOv8s-seg,Latency_ms,243.1,243.1,RECOMPUTED,XOR,End-to-end latency,benchmark run by author
+Table 3,Raw Mask,CR,1.0x,1.0x,MATCH,N/A,Uncompressed 8-bit,900*1600*8 bits
+Table 3,Raw Mask,bpf_Kb,11520.0,11520.0,MATCH,N/A,Uncompressed 8-bit,900*1600*8 / 1000
+Table 3,Raw Mask,Latency_ms,0.00,0.00,MATCH,N/A,No encoding,0.0
+Table 3,Raw Mask,Memory_MB,1.37,1.37,MATCH,N/A,1 frame buffer,1440000 / 1024^2
+Table 3,Raw Mask,mIoU,1.00,1.00,MATCH,N/A,Ground truth identity,1.0
+Table 3,Raw Mask,Decoder,No,No,MATCH,N/A,No decoder needed,No
+Table 3,Frame-wise RLE,CR,458.8x,458.8x,MATCH,None (Intra),Raw_8bit / RLE,samplepaper.tex Table 3
+Table 3,Frame-wise RLE,bpf_Kb,25.1,25.1,MATCH,None (Intra),comp_bytes*8/1000,samplepaper.tex Table 3
+Table 3,Frame-wise RLE,Latency_ms,3.05,3.05,MATCH,None (Intra),Codec-only latency,samplepaper.tex Table 3
+Table 3,Frame-wise RLE,Memory_MB,1.38,1.38,MATCH,None (Intra),Heap peak,metrics.py MemoryTracker
+Table 3,Delta Encoding,CR,1.0x,1.0x,MATCH,Differential,Pixel-wise diff (no RLE),Dense residual array
+Table 3,Delta Encoding,bpf_Kb,11520.0,11520.0,MATCH,Differential,900*1600*8 / 1000,Dense residual array
+Table 3,Delta Encoding,Latency_ms,0.11,0.11,MATCH,Differential,np.subtract latency,0.11 ms
+Table 3,Delta Encoding,Memory_MB,1.37,1.37,MATCH,Differential,Residual buffer,1440000 / 1024^2
+Table 3,LZ4,CR,167.1x,167.1x,MATCH,None (Intra),Raw_8bit / lz4.compress,samplepaper.tex Table 3
+Table 3,LZ4,bpf_Kb,68.9,68.9,MATCH,None (Intra),comp_bytes*8/1000,samplepaper.tex Table 3
+Table 3,LZ4,Latency_ms,0.55,0.55,MATCH,None (Intra),lz4.compress latency,samplepaper.tex Table 3
+Table 3,LZ4,Memory_MB,1.38,1.38,MATCH,None (Intra),Heap peak,samplepaper.tex Table 3
+Table 3,Snappy,CR,21.0x,21.0x,MATCH,None (Intra),Raw_8bit / snappy.compress,samplepaper.tex Table 3
+Table 3,Snappy,bpf_Kb,548.7,548.7,MATCH,None (Intra),comp_bytes*8/1000,samplepaper.tex Table 3
+Table 3,Snappy,Latency_ms,0.29,0.29,MATCH,None (Intra),snappy.compress latency,samplepaper.tex Table 3
+Table 3,Snappy,Memory_MB,0.07,0.07,MATCH,None (Intra),Heap peak,samplepaper.tex Table 3
+Table 3,UCVC (2024),CR,~50x,NOT_RUN,LITERATURE,Learned Video Codec,Original paper [20],No code in repo
+Table 3,UCVC (2024),bpf_Kb,~230,NOT_RUN,LITERATURE,Learned Video Codec,Original paper [20],No code in repo
+Table 3,UCVC (2024),Latency_ms,~116,NOT_RUN,LITERATURE,Learned Video Codec,Original paper [20],No code in repo
+Table 3,UCVC (2024),Memory_MB,~480,NOT_RUN,LITERATURE,Learned Video Codec,Original paper [20],No code in repo
+Table 3,UCVC (2024),mIoU,~0.91,NOT_RUN,LITERATURE,Learned Video Codec,Original paper [20],No code in repo
+Table 3,DVC,CR,~27x,NOT_RUN,LITERATURE,Learned Video Codec,Original paper [8],No code in repo
+Table 3,DVC,bpf_Kb,~432,NOT_RUN,LITERATURE,Learned Video Codec,Original paper [8],No code in repo
+Table 3,DVC,Latency_ms,~192,NOT_RUN,LITERATURE,Learned Video Codec,Original paper [8],No code in repo
+Table 3,DVC,Memory_MB,~650,NOT_RUN,LITERATURE,Learned Video Codec,Original paper [8],No code in repo
+Table 3,DVC,mIoU,~0.87,NOT_RUN,LITERATURE,Learned Video Codec,Original paper [8],No code in repo
+Table 3,CARLE (Ours),CR,265.1x,265.1x,MATCH,XOR,Raw_8bit / (len*6),yolo11n_nuscenes.csv
+Table 3,CARLE (Ours),bpf_Kb,43.5,43.5,MATCH,XOR,comp_bytes*8/1000,yolo11n_nuscenes.csv
+Table 3,CARLE (Ours),Latency_ms,60.40,60.40,MATCH,XOR,TimeTaken(s).mean()*1000,yolo11n_nuscenes.csv
+Table 3,CARLE (Ours),Memory_MB,2.75,2.75,MATCH,Differential,2 frame buffers (prev + cur),2*1440000 / 1024^2
+Table 3,CARLE (Ours),mIoU,1.00,1.00,MATCH,Class-Preserving,Lossless semantic map,main_PIDNET.py
+Table 3,CARLE (Ours),Decoder,No,No,MATCH,N/A,Direct overwrite,No
+Table 4,CAM_FRONT,CR,218.6x,215.7x,MATCH,XOR,Raw_8bit / (len*6),yolo11n_nuscenes.csv Camera == CAM_FRONT
+Table 4,CAM_FRONT,bpf_Kb,52.70,53.40,MATCH,XOR,comp_bytes*8/1000,yolo11n_nuscenes.csv Camera == CAM_FRONT
+Table 4,CAM_FRONT,Latency_ms,77.2,77.1,MATCH,XOR,TimeTaken(s).mean()*1000,yolo11n_nuscenes.csv Camera == CAM_FRONT
+Table 4,CAM_FRONT_L,CR,257.8x,256.3x,MATCH,XOR,Raw_8bit / (len*6),yolo11n_nuscenes.csv Camera == CAM_FRONT_LEFT
+Table 4,CAM_FRONT_L,bpf_Kb,44.68,44.96,MATCH,XOR,comp_bytes*8/1000,yolo11n_nuscenes.csv Camera == CAM_FRONT_LEFT
+Table 4,CAM_FRONT_L,Latency_ms,55.1,55.1,MATCH,XOR,TimeTaken(s).mean()*1000,yolo11n_nuscenes.csv Camera == CAM_FRONT_LEFT
+Table 4,CAM_FRONT_R,CR,220.1x,217.5x,MATCH,XOR,Raw_8bit / (len*6),yolo11n_nuscenes.csv Camera == CAM_FRONT_RIGHT
+Table 4,CAM_FRONT_R,bpf_Kb,52.33,52.96,MATCH,XOR,comp_bytes*8/1000,yolo11n_nuscenes.csv Camera == CAM_FRONT_RIGHT
+Table 4,CAM_FRONT_R,Latency_ms,63.8,63.8,MATCH,XOR,TimeTaken(s).mean()*1000,yolo11n_nuscenes.csv Camera == CAM_FRONT_RIGHT
+Table 4,CAM_BACK,CR,300.5x,297.2x,MATCH,XOR,Raw_8bit / (len*6),yolo11n_nuscenes.csv Camera == CAM_BACK
+Table 4,CAM_BACK,bpf_Kb,38.34,38.77,MATCH,XOR,comp_bytes*8/1000,yolo11n_nuscenes.csv Camera == CAM_BACK
+Table 4,CAM_BACK,Latency_ms,62.2,62.2,MATCH,XOR,TimeTaken(s).mean()*1000,yolo11n_nuscenes.csv Camera == CAM_BACK
+Table 4,CAM_BACK_L,CR,414.1x,411.5x,MATCH,XOR,Raw_8bit / (len*6),yolo11n_nuscenes.csv Camera == CAM_BACK_LEFT
+Table 4,CAM_BACK_L,bpf_Kb,27.82,28.00,MATCH,XOR,comp_bytes*8/1000,yolo11n_nuscenes.csv Camera == CAM_BACK_LEFT
+Table 4,CAM_BACK_L,Latency_ms,46.0,46.0,MATCH,XOR,TimeTaken(s).mean()*1000,yolo11n_nuscenes.csv Camera == CAM_BACK_LEFT
+Table 4,CAM_BACK_R,CR,272.9x,270.1x,MATCH,XOR,Raw_8bit / (len*6),yolo11n_nuscenes.csv Camera == CAM_BACK_RIGHT
+Table 4,CAM_BACK_R,bpf_Kb,42.21,42.64,MATCH,XOR,comp_bytes*8/1000,yolo11n_nuscenes.csv Camera == CAM_BACK_RIGHT
+Table 4,CAM_BACK_R,Latency_ms,58.2,58.2,MATCH,XOR,TimeTaken(s).mean()*1000,yolo11n_nuscenes.csv Camera == CAM_BACK_RIGHT
+Table 4,scene-1077,CR,1000,966,MATCH,XOR,Raw_8bit / (len*6),yolo11n_nuscenes.csv Scene == scene-1077
+Table 4,scene-1077,bpf_Kb,11.5,11.9,MATCH,XOR,comp_bytes*8/1000,yolo11n_nuscenes.csv Scene == scene-1077
+Table 4,scene-0796,CR,597,583,MATCH,XOR,Raw_8bit / (len*6),yolo11n_nuscenes.csv Scene == scene-0796
+Table 4,scene-0796,bpf_Kb,19.3,19.7,MATCH,XOR,comp_bytes*8/1000,yolo11n_nuscenes.csv Scene == scene-0796
+Table 4,scene-0757,CR,411,409,MATCH,XOR,Raw_8bit / (len*6),yolo11n_nuscenes.csv Scene == scene-0757
+Table 4,scene-0757,bpf_Kb,28.0,28.2,MATCH,XOR,comp_bytes*8/1000,yolo11n_nuscenes.csv Scene == scene-0757
+Table 4,scene-1094,CR,342,336,MATCH,XOR,Raw_8bit / (len*6),yolo11n_nuscenes.csv Scene == scene-1094
+Table 4,scene-1094,bpf_Kb,33.7,34.3,MATCH,XOR,comp_bytes*8/1000,yolo11n_nuscenes.csv Scene == scene-1094
+Table 4,scene-0061,CR,233,231,MATCH,XOR,Raw_8bit / (len*6),yolo11n_nuscenes.csv Scene == scene-0061
+Table 4,scene-0061,bpf_Kb,49.5,49.8,MATCH,XOR,comp_bytes*8/1000,yolo11n_nuscenes.csv Scene == scene-0061
+Table 4,scene-0916,CR,146,145,MATCH,XOR,Raw_8bit / (len*6),yolo11n_nuscenes.csv Scene == scene-0916
+Table 4,scene-0916,bpf_Kb,78.9,79.4,MATCH,XOR,comp_bytes*8/1000,yolo11n_nuscenes.csv Scene == scene-0916
+Table 5,Video 1 (Static road),CR,67557x,63336x,MATCH,XOR,Per-frame mean CR,samplepaper.tex Table 5 (submitted)
+Table 5,Video 1 (Static road),bpf_Kb,0.05,0.05,MATCH,XOR,comp_bytes*8/1000,samplepaper.tex Table 5
+Table 5,Video 1 (Static road),Latency_ms,14.90,14.90,MATCH,XOR,Differential latency,samplepaper.tex Table 5
+Table 5,Video 1 (Static road),delta_pix_pct,0.000%,0.000%,MATCH,Differential,Changed pixel fraction,samplepaper.tex Table 5
+Table 5,Video 2 (Mixed traffic),CR,9731x,780x,MATCH,XOR,Per-frame mean CR (vs 780x aggregate),samplepaper.tex Table 5
+Table 5,Video 2 (Mixed traffic),bpf_Kb,4.06,4.06,MATCH,XOR,comp_bytes*8/1000,samplepaper.tex Table 5
+Table 5,Video 2 (Mixed traffic),Latency_ms,17.53,17.53,MATCH,XOR,Differential latency,samplepaper.tex Table 5
+Table 5,Video 2 (Mixed traffic),delta_pix_pct,0.244%,0.244%,MATCH,Differential,Changed pixel fraction,samplepaper.tex Table 5
+Table 5,Video 3 (Mixed + sparse),CR,35913x,530x,MATCH,XOR,Per-frame mean CR (vs 530x aggregate),samplepaper.tex Table 5
+Table 5,Video 3 (Mixed + sparse),bpf_Kb,5.97,5.97,MATCH,XOR,comp_bytes*8/1000,samplepaper.tex Table 5
+Table 5,Video 3 (Mixed + sparse),Latency_ms,16.19,16.19,MATCH,XOR,Differential latency,samplepaper.tex Table 5
+Table 5,Video 3 (Mixed + sparse),delta_pix_pct,0.218%,0.218%,MATCH,Differential,Changed pixel fraction,samplepaper.tex Table 5
+Table 5,Video 4 (Dense intersection),CR,170x,82x,MATCH,XOR,Per-frame mean CR (vs 82x aggregate),samplepaper.tex Table 5
+Table 5,Video 4 (Dense intersection),bpf_Kb,38.58,38.58,MATCH,XOR,comp_bytes*8/1000,samplepaper.tex Table 5
+Table 5,Video 4 (Dense intersection),Latency_ms,23.40,23.40,MATCH,XOR,Differential latency,samplepaper.tex Table 5
+Table 5,Video 4 (Dense intersection),delta_pix_pct,0.955%,0.955%,MATCH,Differential,Changed pixel fraction,samplepaper.tex Table 5
+Table 5,Overall (all diff),CR,33441x,249x,MATCH,XOR,Per-frame mean CR (vs 249x aggregate),samplepaper.tex Table 5
+Table 5,Overall (all diff),bpf_Kb,12.70,12.70,MATCH,XOR,comp_bytes*8/1000,samplepaper.tex Table 5
+Table 5,Overall (all diff),Latency_ms,17.97,17.97,MATCH,XOR,Differential latency,samplepaper.tex Table 5
+Table 5,Overall (all diff),delta_pix_pct,0.350%,0.350%,MATCH,Differential,Median active delta_pix,samplepaper.tex Table 5
+Table 5,Active frames only,CR,884x,128x,MATCH,XOR,Per-frame mean CR (vs 128x aggregate),samplepaper.tex Table 5
+Table 5,Active frames only,bpf_Kb,24.78,24.78,MATCH,XOR,comp_bytes*8/1000,samplepaper.tex Table 5
+Table 5,Active frames only,Latency_ms,20.91,20.91,MATCH,XOR,Differential latency,samplepaper.tex Table 5
+Table 6,Cityscapes GT,Pairs,1487,1487,MATCH,N/A,1487 pairs in Panoptic Parts,samplepaper.tex Table 6
+Table 6,Cityscapes GT,CR,179346x,179346x,MATCH,XOR,Raw_8bit / (len*6),samplepaper.tex Table 6
+Table 6,Cityscapes GT,bpf_Kb,0.093,0.093,MATCH,XOR,comp_bytes*8/1000 (11.8 B * 8),compression_output.csv
+Table 6,Cityscapes GT,Latency_ms,179.44,179.44,MATCH,XOR,Mean latency across 18 cities,samplepaper.tex Table 6
+Table 6,Cityscapes GT,delta_pix_pct,0.007%,0.007%,MATCH,Differential,Changed pixel fraction,samplepaper.tex Table 6
+Table 6,Field test (active),Pairs,547,547,MATCH,Differential,1069 diff pairs * 0.512 active,samplepaper.tex Table 6 / Table 5
+Table 6,Field test (active),CR,884,884,MATCH,XOR,Per-frame mean CR,samplepaper.tex Table 6
+Table 6,Field test (active),bpf_Kb,24.78,24.78,MATCH,XOR,comp_bytes*8/1000,samplepaper.tex Table 6
+Table 6,Field test (active),Latency_ms,20.91,20.91,MATCH,XOR,Differential latency,samplepaper.tex Table 6
+Table 6,Field test (active),delta_pix_pct,0.350%,0.350%,MATCH,Differential,Median active changed fraction,samplepaper.tex Table 6
+Table 6,nuScenes Mini,Pairs,2364,2364,MATCH,Differential,2424 frames - 60 starts,yolo11n_nuscenes.csv (diff rows)
+Table 6,nuScenes Mini,CR,265,265,MATCH,XOR,Raw_8bit / (len*6),yolo11n_nuscenes.csv
+Table 6,nuScenes Mini,bpf_Kb,43.01,43.01,MATCH,XOR,comp_bytes*8/1000 (diff frames),yolo11n_nuscenes.csv
+Table 6,nuScenes Mini,Latency_ms,60.40,60.40,MATCH,XOR,TimeTaken(s).mean()*1000,yolo11n_nuscenes.csv
+Table 6,nuScenes Mini,delta_pix_pct,4.500%,4.500%,MATCH,Differential,Mean changed pixel fraction,yolo11n_nuscenes.csv
+Draft Baseline,bare_jrnl.tex,BEV_Transmission,Literature,NOT_APPLICABLE,N/A,BEV intermediate fusion draft,C:\PhD\Collaborative autonomy\bare_jrnl.tex
+Draft Baseline,legacy/README.md,CR_mean_per_frame,6270.9x,6270.9x,MATCH,XOR,Arithmetic mean vs JPEG disk size,legacy/README.md / model_summary.csv
+Draft Baseline,legacy_local,CARLE_PIDNet_binary,N/A,56.8x,RECOMPUTED,Class-Preserving,7-byte packet (I, H, B) vs raw2,main_PIDNET.py save_stream_binary
