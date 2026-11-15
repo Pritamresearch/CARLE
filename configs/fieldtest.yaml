@@ -1,0 +1,121 @@
+# Field-test dataset configuration for CARLE Phase 1
+# Evaluated at native resolution (no rescaling), at native fps and 10 Hz subsampled.
+# Night conditions are tracked and labelled separately.
+
+version: 1.0
+dataset_root: "data/field_videos"
+
+clips:
+  - clip_id: "india_bolpur"
+    filename: "india bolpur.mp4"
+    country: "India"
+    location: "Bolpur, West Bengal"
+    condition: "day"
+    resolution:
+      width: 848
+      height: 478
+    native_fps: 30.01
+    total_frames: 239
+    frame_range: [0, 239]
+    sample_rates:
+      - name: "native"
+        fps: 30.01
+        stride: 1
+      - name: "10hz"
+        fps: 10.0
+        stride: 3
+
+  - clip_id: "malaysia"
+    filename: "malaysia.mp4"
+    country: "Malaysia"
+    location: "Highway / Urban"
+    condition: "day"
+    resolution:
+      width: 848
+      height: 478
+    native_fps: 29.67
+    total_frames: 487
+    frame_range: [0, 487]
+    sample_rates:
+      - name: "native"
+        fps: 29.67
+        stride: 1
+      - name: "10hz"
+        fps: 10.0
+        stride: 3
+
+  - clip_id: "sikkim"
+    filename: "sikim.mp4"
+    country: "India"
+    location: "Sikkim (Mountain / Road)"
+    condition: "day"
+    resolution:
+      width: 848
+      height: 478
+    native_fps: 29.92
+    total_frames: 1907
+    frame_range: [0, 1907]
+    sample_rates:
+      - name: "native"
+        fps: 29.92
+        stride: 1
+      - name: "10hz"
+        fps: 10.0
+        stride: 3
+
+  - clip_id: "dhaka_day"
+    filename: "dhaka.mp4"
+    country: "Bangladesh"
+    location: "Dhaka (Urban traffic)"
+    condition: "day"
+    resolution:
+      width: 576
+      height: 1024
+    native_fps: 24.00
+    total_frames: 268
+    frame_range: [0, 268]
+    sample_rates:
+      - name: "native"
+        fps: 24.00
+        stride: 1
+      - name: "10hz"
+        fps: 10.0
+        stride: 2 # 24 / 2.4 ~= 10Hz; stride 2 gives 12 Hz, stride round(24/10)=2
+
+  - clip_id: "dhaka_night"
+    filename: "dhaka night light.mp4"
+    country: "Bangladesh"
+    location: "Dhaka (Night lights)"
+    condition: "night"
+    resolution:
+      width: 576
+      height: 1024
+    native_fps: 24.74
+    total_frames: 772
+    frame_range: [0, 772]
+    sample_rates:
+      - name: "native"
+        fps: 24.74
+        stride: 1
+      - name: "10hz"
+        fps: 10.0
+        stride: 2
+
+  - clip_id: "bhubaneswar_night"
+    filename: "bhubaneswar night light.mp4"
+    country: "India"
+    location: "Bhubaneswar (Night lights)"
+    condition: "night"
+    resolution:
+      width: 478
+      height: 850
+    native_fps: 29.87
+    total_frames: 1811
+    frame_range: [0, 1811]
+    sample_rates:
+      - name: "native"
+        fps: 29.87
+        stride: 1
+      - name: "10hz"
+        fps: 10.0
+        stride: 3
