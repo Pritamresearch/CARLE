@@ -1,0 +1,5 @@
+transfer,cm_intra_Kb,cm_temp_Kb,gain_temp_pct
+In-Domain Field (Clip-Level CV),4.016,7.776,-93.64
+Cross-Domain nuScenes -> Field,1.697,5.008,-195.04
+In-Domain nuScenes (Scene-Level CV),3.079,3.099,-0.64
+Cross-Domain Field -> nuScenes,29.071,54.151,-86.27

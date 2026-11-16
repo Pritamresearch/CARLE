@@ -1,0 +1,9 @@
+dataset,N_frames,Road_c1,Sidewalk_c2,Static_c3,Veg_c4,Sky_c5,Vehicle_c6,TwoWheel_c7,Person_c8,has_road_pct,single_class_pct,mean_delta_pix
+nuScenes_Keyframes_2Hz,2424,20.13,2.75,36.23,28.8,6.1,5.36,0.07,0.56,96.0,0.25,0.5283
+Field_Bhubaneswar_Night_Native,1811,0.84,0.02,12.61,16.9,2.78,64.83,0.05,1.97,44.17,0.22,0.1273
+Field_Dhaka_Day_Native,268,16.58,3.71,22.86,25.58,11.11,11.4,0.23,8.53,99.63,0.0,0.1489
+Field_Dhaka_Night_Native,772,28.35,0.7,15.22,23.78,12.93,9.44,0.19,9.39,98.96,0.0,0.1105
+Field_Bolpur_Native,239,19.66,0.21,0.91,39.16,18.97,20.88,0.01,0.21,100.0,0.0,0.0479
+Field_Malaysia_Native,487,10.52,0.06,10.24,44.99,29.27,3.61,0.08,1.22,100.0,0.0,0.0692
+Field_Sikkim_Native,1907,22.16,0.78,2.22,70.0,4.47,0.31,0.01,0.04,99.95,0.0,0.0359
+nuScenes_Sweeps_12Hz_All6Cams,6000,20.63,2.92,38.75,27.3,5.76,3.96,0.05,0.63,95.85,0.27,0.1174

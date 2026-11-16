@@ -1,0 +1,31 @@
+dataset,variant,weight_w,mean_bits,diff_vs_pretrained_pct
+nuScenes_Sweeps,CM-Intra,0 (pure adaptive),7396.8,104.73870682019486
+nuScenes_Sweeps,CM-Temporal,0 (pure adaptive),7567.52,109.71489380570215
+nuScenes_Sweeps,CM-Intra,64,7252.0,100.73073516386182
+nuScenes_Sweeps,CM-Temporal,64,7232.8,100.43896599122068
+nuScenes_Sweeps,CM-Intra,256,7271.84,101.27989371124887
+nuScenes_Sweeps,CM-Temporal,256,7272.64,101.54303196913936
+nuScenes_Sweeps,CM-Intra,1024,7320.8,102.63507528786535
+nuScenes_Sweeps,CM-Temporal,1024,7339.2,103.38757593224848
+nuScenes_Sweeps,CM-Intra,4096,4243.2,17.449069973427804
+nuScenes_Sweeps,CM-Temporal,4096,4250.88,17.80250964394981
+nuScenes_Sweeps,CM-Intra,16384,3510.4,-2.834366696191322
+nuScenes_Sweeps,CM-Temporal,16384,3519.2,-2.4741719505165665
+nuScenes_Sweeps,CM-Intra,inf (pretrained),3534.08,-2.1789193976970838
+nuScenes_Sweeps,CM-Temporal,inf (pretrained),3538.88,-1.9287899614241981
+nuScenes_Sweeps,CM-Intra,Online Mixture (alpha),3628.16,0.4251550044286889
+Field_Native,CM-Intra,0 (pure adaptive),1689.28,266.46997570288096
+Field_Native,CM-Temporal,0 (pure adaptive),1727.36,277.21872816212436
+Field_Native,CM-Intra,64,1577.76,242.2769871572371
+Field_Native,CM-Temporal,64,1561.28,240.95038434661072
+Field_Native,CM-Intra,256,1565.12,239.53488372093022
+Field_Native,CM-Temporal,256,1556.64,239.937106918239
+Field_Native,CM-Intra,1024,1556.48,237.66053453661922
+Field_Native,CM-Temporal,1024,1557.6,240.14675052410897
+Field_Native,CM-Intra,4096,667.2,44.741409232905255
+Field_Native,CM-Temporal,4096,664.32,45.07337526205452
+Field_Native,CM-Intra,16384,443.68,-3.7486983686220006
+Field_Native,CM-Temporal,16384,438.4,-4.262753319357102
+Field_Native,CM-Intra,inf (pretrained),460.96,0.0
+Field_Native,CM-Temporal,inf (pretrained),456.8,-0.2445842068483588
+Field_Native,CM-Intra,Online Mixture (alpha),483.52,4.894133981256509

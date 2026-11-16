@@ -1,0 +1,2 @@
+Total_Contexts,Zero_Count_Contexts,Count_1_to_9_Contexts,Count_10_to_99_Contexts,Count_100_to_999_Contexts,Count_ge_1000_Contexts,Starved_Contexts_Pct,Starved_Pixels_Pct
+65536,61859,2102,800,433,342,97.6,0.01

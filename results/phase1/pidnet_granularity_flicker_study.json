@@ -1,0 +1,164 @@
+[
+  {
+    "arch": "pidnet-s",
+    "resolution": "Full (900x1600)",
+    "H": 900,
+    "W": 1600,
+    "K": 4,
+    "mean_bits_yang": 2265.9,
+    "flicker_pct": 30.5
+  },
+  {
+    "arch": "pidnet-s",
+    "resolution": "Full (900x1600)",
+    "H": 900,
+    "W": 1600,
+    "K": 8,
+    "mean_bits_yang": 4820.4,
+    "flicker_pct": 28.42
+  },
+  {
+    "arch": "pidnet-s",
+    "resolution": "Full (900x1600)",
+    "H": 900,
+    "W": 1600,
+    "K": 19,
+    "mean_bits_yang": 6182.1,
+    "flicker_pct": 25.67
+  },
+  {
+    "arch": "pidnet-s",
+    "resolution": "Half (450x800)",
+    "H": 450,
+    "W": 800,
+    "K": 4,
+    "mean_bits_yang": 1062.7,
+    "flicker_pct": 25.08
+  },
+  {
+    "arch": "pidnet-s",
+    "resolution": "Half (450x800)",
+    "H": 450,
+    "W": 800,
+    "K": 8,
+    "mean_bits_yang": 2243.0,
+    "flicker_pct": 24.52
+  },
+  {
+    "arch": "pidnet-s",
+    "resolution": "Half (450x800)",
+    "H": 450,
+    "W": 800,
+    "K": 19,
+    "mean_bits_yang": 2979.6,
+    "flicker_pct": 22.18
+  },
+  {
+    "arch": "pidnet-m",
+    "resolution": "Full (900x1600)",
+    "H": 900,
+    "W": 1600,
+    "K": 4,
+    "mean_bits_yang": 2240.2,
+    "flicker_pct": 29.59
+  },
+  {
+    "arch": "pidnet-m",
+    "resolution": "Full (900x1600)",
+    "H": 900,
+    "W": 1600,
+    "K": 8,
+    "mean_bits_yang": 4470.8,
+    "flicker_pct": 26.9
+  },
+  {
+    "arch": "pidnet-m",
+    "resolution": "Full (900x1600)",
+    "H": 900,
+    "W": 1600,
+    "K": 19,
+    "mean_bits_yang": 5567.7,
+    "flicker_pct": 24.81
+  },
+  {
+    "arch": "pidnet-m",
+    "resolution": "Half (450x800)",
+    "H": 450,
+    "W": 800,
+    "K": 4,
+    "mean_bits_yang": 1047.9,
+    "flicker_pct": 26.51
+  },
+  {
+    "arch": "pidnet-m",
+    "resolution": "Half (450x800)",
+    "H": 450,
+    "W": 800,
+    "K": 8,
+    "mean_bits_yang": 2096.4,
+    "flicker_pct": 24.16
+  },
+  {
+    "arch": "pidnet-m",
+    "resolution": "Half (450x800)",
+    "H": 450,
+    "W": 800,
+    "K": 19,
+    "mean_bits_yang": 2725.6,
+    "flicker_pct": 22.14
+  },
+  {
+    "arch": "pidnet-l",
+    "resolution": "Full (900x1600)",
+    "H": 900,
+    "W": 1600,
+    "K": 4,
+    "mean_bits_yang": 1967.7,
+    "flicker_pct": 30.62
+  },
+  {
+    "arch": "pidnet-l",
+    "resolution": "Full (900x1600)",
+    "H": 900,
+    "W": 1600,
+    "K": 8,
+    "mean_bits_yang": 4601.8,
+    "flicker_pct": 29.47
+  },
+  {
+    "arch": "pidnet-l",
+    "resolution": "Full (900x1600)",
+    "H": 900,
+    "W": 1600,
+    "K": 19,
+    "mean_bits_yang": 5839.1,
+    "flicker_pct": 27.13
+  },
+  {
+    "arch": "pidnet-l",
+    "resolution": "Half (450x800)",
+    "H": 450,
+    "W": 800,
+    "K": 4,
+    "mean_bits_yang": 1009.4,
+    "flicker_pct": 26.76
+  },
+  {
+    "arch": "pidnet-l",
+    "resolution": "Half (450x800)",
+    "H": 450,
+    "W": 800,
+    "K": 8,
+    "mean_bits_yang": 2281.0,
+    "flicker_pct": 25.61
+  },
+  {
+    "arch": "pidnet-l",
+    "resolution": "Half (450x800)",
+    "H": 450,
+    "W": 800,
+    "K": 19,
+    "mean_bits_yang": 3012.5,
+    "flicker_pct": 23.08
+  }
+]

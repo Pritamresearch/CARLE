@@ -1,0 +1,33 @@
+K,Dataset,Codec,Bits/Frame,Bitrate (kb/s),Gain vs Best-Intra (%),95% CI Lower,95% CI Upper
+4,nuScenes_Keyframes_2Hz,PNG (level 9),49318.6,98.6,-357.66,-371.52,-345.21
+4,nuScenes_Keyframes_2Hz,Zstandard-19,28577.0,57.2,-165.19,-168.36,-161.88
+4,nuScenes_Keyframes_2Hz,WebP Lossless (method 4),21819.6,43.6,-102.48,-105.31,-99.52
+4,nuScenes_Keyframes_2Hz,JPEG-XL (Effort 7),20186.2,40.4,-87.32,-90.53,-84.66
+4,nuScenes_Keyframes_2Hz,SemCM (a) [Frame-Indep],10785.3,21.6,-0.08,-0.32,0.1
+4,nuScenes_Keyframes_2Hz,SemCM (b) [Persistent N=30],10776.1,21.6,0.0,0.0,0.0
+4,nuScenes_Keyframes_2Hz,CM-Temporal Ablation,15472.8,30.9,-43.58,-46.48,-40.66
+4,nuScenes_Keyframes_2Hz,CM-Temporal + Skip Flag,15455.3,30.9,-43.42,-46.3,-40.49
+4,nuScenes_Sweeps_12Hz,PNG (level 9),48026.6,576.3,-363.25,-383.4,-348.83
+4,nuScenes_Sweeps_12Hz,Zstandard-19,27431.4,329.2,-164.6,-168.39,-160.63
+4,nuScenes_Sweeps_12Hz,WebP Lossless (method 4),20860.4,250.3,-101.21,-103.93,-98.33
+4,nuScenes_Sweeps_12Hz,JPEG-XL (Effort 7),19551.1,234.6,-88.58,-93.25,-85.09
+4,nuScenes_Sweeps_12Hz,SemCM (a) [Frame-Indep],10393.8,124.7,-0.26,-0.5,-0.05
+4,nuScenes_Sweeps_12Hz,SemCM (b) [Persistent N=30],10367.3,124.4,0.0,0.0,0.0
+4,nuScenes_Sweeps_12Hz,CM-Temporal Ablation,14887.3,178.6,-43.6,-46.56,-41.1
+4,nuScenes_Sweeps_12Hz,CM-Temporal + Skip Flag,14856.7,178.3,-43.3,-46.28,-40.85
+4,Field_Native,PNG (level 9),31202.3,780.1,-314.97,-329.47,-303.54
+4,Field_Native,Zstandard-19,18617.1,465.4,-147.59,-155.65,-139.53
+4,Field_Native,WebP Lossless (method 4),16108.3,402.7,-114.23,-119.68,-106.42
+4,Field_Native,JPEG-XL (Effort 7),12579.0,314.5,-67.29,-75.68,-55.51
+4,Field_Native,SemCM (a) [Frame-Indep],7601.9,190.0,-1.1,-2.93,0.31
+4,Field_Native,SemCM (b) [Persistent N=30],7519.2,188.0,0.0,0.0,0.0
+4,Field_Native,CM-Temporal Ablation,11855.1,296.4,-57.66,-64.07,-49.25
+4,Field_Native,CM-Temporal + Skip Flag,11856.1,296.4,-57.68,-64.08,-49.27
+4,Field_10Hz,PNG (level 9),31875.4,318.8,-314.59,-327.65,-303.34
+4,Field_10Hz,Zstandard-19,19274.1,192.7,-150.69,-163.45,-141.99
+4,Field_10Hz,WebP Lossless (method 4),16544.5,165.4,-115.19,-119.84,-109.61
+4,Field_10Hz,JPEG-XL (Effort 7),12792.1,127.9,-66.38,-74.19,-55.38
+4,Field_10Hz,SemCM (a) [Frame-Indep],7776.3,77.8,-1.14,-2.43,-0.22
+4,Field_10Hz,SemCM (b) [Persistent N=30],7688.5,76.9,0.0,0.0,0.0
+4,Field_10Hz,CM-Temporal Ablation,12420.3,124.2,-61.54,-68.11,-55.76
+4,Field_10Hz,CM-Temporal + Skip Flag,12421.3,124.2,-61.56,-68.12,-55.77

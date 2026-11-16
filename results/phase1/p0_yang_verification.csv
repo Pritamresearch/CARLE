@@ -1,0 +1,13 @@
+K,Dataset_Group,Total_Frames,Lossless_Failures,Success_Rate_Pct,Mean_Bits_Per_Frame
+4,nuScenes_Keyframes_2Hz,2424,0,100.0,5980.1
+4,nuScenes_Sweeps_12Hz,6000,0,100.0,5884.5
+4,Field_Native_Unflagged,3673,0,100.0,3289.7
+4,Field_10Hz_Unflagged,1399,0,100.0,3704.8
+4,Field_Native_Flagged,1811,0,100.0,3763.8
+4,Field_10Hz_Flagged,604,0,100.0,3748.4
+8,nuScenes_Keyframes_2Hz,2424,0,100.0,12400.1
+8,nuScenes_Sweeps_12Hz,6000,0,100.0,12175.0
+8,Field_Native_Unflagged,3673,0,100.0,6005.0
+8,Field_10Hz_Unflagged,1399,0,100.0,6527.0
+8,Field_Native_Flagged,1811,0,100.0,5096.0
+8,Field_10Hz_Flagged,604,0,100.0,5053.8

@@ -1,0 +1,46 @@
+{
+  "k4": {
+    "k": 4,
+    "total_evaluated": 300,
+    "lossless_matches": 300,
+    "timeouts": 0,
+    "counters": [
+      0,
+      1222023,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "chrono_enc_mean_ms": 6.894229666666667,
+    "chrono_enc_median_ms": 7.10675,
+    "chrono_dec_mean_ms": 2.250157094594594,
+    "chrono_dec_median_ms": 2.0962,
+    "wall_enc_mean_ms": 23.69638800000151,
+    "wall_dec_mean_ms": 9.787195333337877,
+    "mean_bytes": 597.69
+  },
+  "k8": {
+    "k": 8,
+    "total_evaluated": 300,
+    "lossless_matches": 300,
+    "timeouts": 0,
+    "counters": [
+      0,
+      2689132,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "chrono_enc_mean_ms": 9.855388666666666,
+    "chrono_enc_median_ms": 9.31105,
+    "chrono_dec_mean_ms": 3.7261936026936024,
+    "chrono_dec_median_ms": 3.0411,
+    "wall_enc_mean_ms": 26.515985332468215,
+    "wall_dec_mean_ms": 11.945910666060323,
+    "mean_bytes": 1154.1933333333334
+  }
+}

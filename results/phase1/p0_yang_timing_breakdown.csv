@@ -1,0 +1,5 @@
+K,Operation,Wall_Clock_ms (Total),Internal_C++_ms (Process Run),Process_Startup_and_IO_ms,Codec_Only_Pure_Algo_ms (Est.)
+4,Encode (900x1600),37.67,26.5,11.17,25.0
+4,Decode (900x1600),16.46,5.0,11.46,4.0
+8,Encode (900x1600),43.62,33.5,10.12,32.0
+8,Decode (900x1600),19.41,7.5,11.91,6.5

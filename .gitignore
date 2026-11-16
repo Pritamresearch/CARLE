@@ -2,6 +2,8 @@
 data/
 legacy_local/
 results/**/cache/
+results/**/cache_pidnet/
+results/**/overlays/
 __pycache__/
 *.pyc
 *.pyo
@@ -10,3 +12,7 @@ __pycache__/
 *.mlpackage
 .pytest_cache/
 paper/
+*.yuv
+*.bin
+*.exe
+.vscode/

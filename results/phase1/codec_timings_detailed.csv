@@ -1,0 +1,7 @@
+K,Codec,Encode_Time_ms,Decode_Time_ms,Throughput_MPix_sec
+4,SemCM (a) [Frame-Indep],9.26,109.42,155.49
+4,SemCM (b) [Persistent N=30],9.08,107.23,158.67
+4,CM-Temporal (Compact),146.69,96.27,9.82
+8,SemCM (a) [Frame-Indep],9.0,9.0,159.95
+8,SemCM (b) [Persistent N=30],8.82,8.82,163.21
+8,CM-Temporal (Compact),13.31,32.7,108.18

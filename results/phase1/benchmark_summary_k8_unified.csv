@@ -1,0 +1,33 @@
+K,Dataset,Codec,Bits/Frame,Bitrate (kb/s),Gain vs SemCM (a) (%),95% CI Lower,95% CI Upper
+8,nuScenes_Keyframes_2Hz,WebP Lossless (method 4),45290.5,90.6,-69.45,-71.2,-67.65
+8,nuScenes_Keyframes_2Hz,JPEG-XL (Effort 7),36876.7,73.8,-37.97,-39.86,-36.25
+8,nuScenes_Keyframes_2Hz,JPEG-XL (Effort 9),35141.5,70.3,-31.48,-33.54,-29.63
+8,nuScenes_Keyframes_2Hz,Yang et al. 2026,12385.6,24.8,53.66,53.16,54.13
+8,nuScenes_Keyframes_2Hz,SemCM (a) [Frame-Indep] (Frozen Ref),26727.6,53.5,0.0,0.0,0.0
+8,nuScenes_Keyframes_2Hz,SemCM (b) [Persistent N=30],26636.2,53.3,0.34,0.19,0.53
+8,nuScenes_Keyframes_2Hz,Compact Temporal,26876.2,53.8,-0.56,-1.41,0.19
+8,nuScenes_Keyframes_2Hz,Compact Temporal + Global MC,26966.9,53.9,-0.9,-1.77,-0.17
+8,nuScenes_Sweeps_12Hz,WebP Lossless (method 4),43328.6,519.9,-69.37,-71.33,-67.53
+8,nuScenes_Sweeps_12Hz,JPEG-XL (Effort 7),35638.0,427.7,-39.31,-41.61,-37.36
+8,nuScenes_Sweeps_12Hz,JPEG-XL (Effort 9),34021.6,408.3,-32.99,-35.37,-30.88
+8,nuScenes_Sweeps_12Hz,Yang et al. 2026,11949.3,143.4,53.29,52.73,53.89
+8,nuScenes_Sweeps_12Hz,SemCM (a) [Frame-Indep] (Frozen Ref),25581.9,307.0,0.0,0.0,0.0
+8,nuScenes_Sweeps_12Hz,SemCM (b) [Persistent N=30],25411.6,304.9,0.67,0.51,0.84
+8,nuScenes_Sweeps_12Hz,Compact Temporal,25678.5,308.1,-0.38,-1.47,0.45
+8,nuScenes_Sweeps_12Hz,Compact Temporal + Global MC,25810.1,309.7,-0.89,-1.98,-0.06
+8,Field_Native,WebP Lossless (method 4),27506.3,687.7,-79.45,-83.41,-76.42
+8,Field_Native,JPEG-XL (Effort 7),20885.7,522.1,-36.26,-40.37,-30.88
+8,Field_Native,JPEG-XL (Effort 9),19313.9,482.8,-26.0,-33.1,-17.37
+8,Field_Native,Yang et al. 2026,7325.2,183.1,52.21,50.12,54.96
+8,Field_Native,SemCM (a) [Frame-Indep] (Frozen Ref),15327.9,383.2,0.0,0.0,0.0
+8,Field_Native,SemCM (b) [Persistent N=30],15249.5,381.2,0.51,0.15,0.78
+8,Field_Native,Compact Temporal,15787.9,394.7,-3.0,-5.87,0.36
+8,Field_Native,Compact Temporal + Global MC,15801.8,395.0,-3.09,-5.87,0.0
+8,Field_10Hz,WebP Lossless (method 4),28925.7,289.3,-78.41,-81.07,-75.32
+8,Field_10Hz,JPEG-XL (Effort 7),21742.7,217.4,-34.11,-37.38,-27.89
+8,Field_10Hz,JPEG-XL (Effort 9),20116.8,201.2,-24.08,-29.94,-16.49
+8,Field_10Hz,Yang et al. 2026,7747.7,77.5,52.21,49.23,55.38
+8,Field_10Hz,SemCM (a) [Frame-Indep] (Frozen Ref),16213.0,162.1,0.0,0.0,0.0
+8,Field_10Hz,SemCM (b) [Persistent N=30],16144.6,161.4,0.42,0.12,0.94
+8,Field_10Hz,Compact Temporal,16554.0,165.5,-2.1,-5.12,1.12
+8,Field_10Hz,Compact Temporal + Global MC,16758.1,167.6,-3.36,-5.89,-0.45

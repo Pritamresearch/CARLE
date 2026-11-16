@@ -1,0 +1,5 @@
+transfer,cm_intra_Kb,cm_temp_Kb,gain_temp_pct
+In-Domain Field -> Field,2.21359375,1.95203125,11.816192560175041
+Cross-Domain nuScenes -> Field,2.28078125,2.266171875,0.6405425772419006
+In-Domain nuScenes -> nuScenes,3.34890625,3.293671875,1.649325806000105
+Cross-Domain Field -> nuScenes,3.409296875,3.540234375,-3.8406012970049703

@@ -279,8 +279,8 @@ def compute_cross_entropy_rigorous(curr: np.ndarray, prev: np.ndarray, use_tempo
 
 @njit(fastmath=True)
 def cm_prior_adaptive_encode(curr: np.ndarray, prev: np.ndarray, use_temporal: bool,
-                             prior_probs: np.ndarray, prior_w: int,
-                             counts_state: np.ndarray, totals_state: np.ndarray) -> np.ndarray:
+                             counts_state: np.ndarray, totals_state: np.ndarray,
+                             max_total: int = 2048) -> np.ndarray:
     """
     Online adaptation initialized with prior_probs * prior_w.
     Supports in-place persistence across frames if counts_state is passed.
@@ -322,7 +322,7 @@ def cm_prior_adaptive_encode(curr: np.ndarray, prev: np.ndarray, use_temporal: b
             # Online count update
             counts_state[ctx, sym] += 1
             totals_state[ctx] += 1
-            if totals_state[ctx] >= 2048:
+            if totals_state[ctx] >= max_total:
                 new_tot = 0
                 for s in range(4):
                     counts_state[ctx, s] = (counts_state[ctx, s] + 1) >> 1
@@ -353,7 +353,8 @@ def cm_prior_adaptive_encode(curr: np.ndarray, prev: np.ndarray, use_temporal: b
 
 @njit(fastmath=True)
 def cm_prior_adaptive_decode(payload: np.ndarray, H: int, W: int, prev: np.ndarray, use_temporal: bool,
-                             counts_state: np.ndarray, totals_state: np.ndarray) -> np.ndarray:
+                             counts_state: np.ndarray, totals_state: np.ndarray,
+                             max_total: int = 2048) -> np.ndarray:
     decoded = np.empty((H, W), dtype=np.uint8)
     b_map = precompute_bmap_fast(prev) if use_temporal else np.zeros((1, 1), dtype=np.uint8)
     
@@ -405,7 +406,7 @@ def cm_prior_adaptive_decode(payload: np.ndarray, H: int, W: int, prev: np.ndarr
             
             counts_state[ctx, sym] += 1
             totals_state[ctx] += 1
-            if totals_state[ctx] >= 2048:
+            if totals_state[ctx] >= max_total:
                 new_tot = 0
                 for s in range(4):
                     counts_state[ctx, s] = (counts_state[ctx, s] + 1) >> 1
@@ -428,4 +429,228 @@ def cm_prior_adaptive_decode(payload: np.ndarray, H: int, W: int, prev: np.ndarr
                 else:
                     break
                     
+    return decoded
+
+
+# -----------------------------------------------------------------------------
+# Adaptation: Online Probability Mixing Codec (Pretrained + Adaptive)
+# -----------------------------------------------------------------------------
+
+@njit(fastmath=True)
+def cm_mixture_encode(curr: np.ndarray, prev: np.ndarray, use_temporal: bool,
+                      prior_cum_freqs: np.ndarray,
+                      adapt_counts: np.ndarray, adapt_totals: np.ndarray,
+                      alpha_state: np.ndarray, eta: float = 0.01) -> np.ndarray:
+    """
+    Online mixture of pretrained prior and adaptive model.
+    alpha_state: 1-element array with weight in [0.01, 0.99]
+    """
+    H, W = curr.shape
+    total_pixels = H * W
+    out_buf = np.empty(total_pixels * 2 + 1024, dtype=np.uint8)
+    out_ptr = 0
+    
+    b_map = precompute_bmap_fast(prev) if use_temporal else np.zeros((1, 1), dtype=np.uint8)
+    
+    low = np.int64(0)
+    range_val = np.int64(0xFFFFFFFF)
+    alpha = alpha_state[0]
+    
+    for r in range(H):
+        for c in range(W):
+            if use_temporal:
+                ctx = get_temporal_context_oof(curr, prev, b_map, r, c)
+            else:
+                ctx = get_spatial_context_fast(curr, r, c)
+                
+            sym = int(curr[r, c] - 1)
+            tot_a = int(adapt_totals[ctx])
+            
+            # 1. Compute prior frequency
+            f_prior = np.empty(4, dtype=np.int64)
+            for s in range(4):
+                f_prior[s] = int(prior_cum_freqs[ctx, s + 1]) - int(prior_cum_freqs[ctx, s])
+                
+            # 2. Compute adaptive frequency scaled to 16384
+            f_adapt = np.empty(4, dtype=np.int64)
+            rem_a = 16384
+            for s in range(3):
+                cnt = int(adapt_counts[ctx, s])
+                fr = max(1, (cnt * 16384) // tot_a)
+                f_adapt[s] = fr
+                rem_a -= fr
+            f_adapt[3] = max(1, rem_a)
+            
+            # 3. Blend frequencies using alpha
+            f_mix = np.empty(4, dtype=np.int64)
+            c_low = 0
+            c_high = 0
+            cum = 0
+            for s in range(4):
+                mix_f = max(1, int(round(alpha * f_prior[s] + (1.0 - alpha) * f_adapt[s])))
+                f_mix[s] = mix_f
+                if s == sym:
+                    c_low = cum
+                    c_high = cum + mix_f
+                cum += mix_f
+                
+            # Normalize to 16384
+            c_low = (c_low * 16384) // cum
+            c_high = (c_high * 16384) // cum
+            if c_high <= c_low: c_high = c_low + 1
+            if c_high > 16384: c_high = 16384
+            
+            r_step = range_val // RC_TOTAL_FREQ
+            low = low + c_low * r_step
+            range_val = (c_high - c_low) * r_step
+            
+            # Update alpha
+            p_prior = f_prior[sym] / 16384.0
+            p_adapt = f_adapt[sym] / 16384.0
+            p_mix = f_mix[sym] / float(cum)
+            grad = (p_prior - p_adapt) / (p_mix + 1e-9)
+            alpha = min(max(alpha + eta * grad, 0.01), 0.99)
+            
+            # Update adaptive counts
+            adapt_counts[ctx, sym] += 1
+            adapt_totals[ctx] += 1
+            if adapt_totals[ctx] >= 2048:
+                new_tot = 0
+                for s in range(4):
+                    adapt_counts[ctx, s] = (adapt_counts[ctx, s] + 1) >> 1
+                    new_tot += adapt_counts[ctx, s]
+                adapt_totals[ctx] = new_tot
+                
+            while True:
+                if (low ^ (low + range_val)) < RC_TOP:
+                    out_buf[out_ptr] = np.uint8((low >> 24) & 0xFF)
+                    out_ptr += 1
+                    low = (low << 8) & np.int64(0xFFFFFFFF)
+                    range_val = (range_val << 8) & np.int64(0xFFFFFFFF)
+                elif range_val < RC_BOT:
+                    out_buf[out_ptr] = np.uint8((low >> 24) & 0xFF)
+                    out_ptr += 1
+                    range_val = ((-low) & (RC_BOT - 1)) << 8
+                    low = (low << 8) & np.int64(0xFFFFFFFF)
+                else:
+                    break
+                    
+    for _ in range(4):
+        out_buf[out_ptr] = np.uint8((low >> 24) & 0xFF)
+        out_ptr += 1
+        low = (low << 8) & np.int64(0xFFFFFFFF)
+        
+    alpha_state[0] = alpha
+    return out_buf[:out_ptr]
+
+
+@njit(fastmath=True)
+def cm_mixture_decode(payload: np.ndarray, H: int, W: int, prev: np.ndarray, use_temporal: bool,
+                      prior_cum_freqs: np.ndarray,
+                      adapt_counts: np.ndarray, adapt_totals: np.ndarray,
+                      alpha_state: np.ndarray, eta: float = 0.01) -> np.ndarray:
+    decoded = np.empty((H, W), dtype=np.uint8)
+    b_map = precompute_bmap_fast(prev) if use_temporal else np.zeros((1, 1), dtype=np.uint8)
+    
+    in_ptr = 0
+    code = np.int64(0)
+    for _ in range(4):
+        byte_val = payload[in_ptr] if in_ptr < len(payload) else 0
+        code = ((code << 8) | np.int64(byte_val)) & np.int64(0xFFFFFFFF)
+        in_ptr += 1
+        
+    low = np.int64(0)
+    range_val = np.int64(0xFFFFFFFF)
+    alpha = alpha_state[0]
+    
+    for r in range(H):
+        for c in range(W):
+            if use_temporal:
+                ctx = get_temporal_context_oof(decoded, prev, b_map, r, c)
+            else:
+                ctx = get_spatial_context_fast(decoded, r, c)
+                
+            tot_a = int(adapt_totals[ctx])
+            f_prior = np.empty(4, dtype=np.int64)
+            for s in range(4):
+                f_prior[s] = int(prior_cum_freqs[ctx, s + 1]) - int(prior_cum_freqs[ctx, s])
+                
+            f_adapt = np.empty(4, dtype=np.int64)
+            rem_a = 16384
+            for s in range(3):
+                cnt = int(adapt_counts[ctx, s])
+                fr = max(1, (cnt * 16384) // tot_a)
+                f_adapt[s] = fr
+                rem_a -= fr
+            f_adapt[3] = max(1, rem_a)
+            
+            f_mix = np.empty(4, dtype=np.int64)
+            cum = 0
+            for s in range(4):
+                mix_f = max(1, int(round(alpha * f_prior[s] + (1.0 - alpha) * f_adapt[s])))
+                f_mix[s] = mix_f
+                cum += mix_f
+                
+            r_step = range_val // RC_TOTAL_FREQ
+            val = (code - low) // r_step
+            if val < 0: val = 0
+            if val >= RC_TOTAL_FREQ: val = RC_TOTAL_FREQ - 1
+            
+            sym = 3
+            c_low_count = 0
+            m_cum = 0
+            for s in range(4):
+                next_cum = ((m_cum + f_mix[s]) * 16384) // cum
+                cur_low = (m_cum * 16384) // cum
+                if val >= cur_low and val < next_cum:
+                    sym = s
+                    c_low_count = m_cum
+                    break
+                m_cum += f_mix[s]
+                
+            decoded[r, c] = np.uint8(sym + 1)
+            
+            c_high_count = c_low_count + f_mix[sym]
+            c_low = (c_low_count * 16384) // cum
+            c_high = (c_high_count * 16384) // cum
+            if c_high <= c_low: c_high = c_low + 1
+            if c_high > 16384: c_high = 16384
+            
+            low = low + c_low * r_step
+            range_val = (c_high - c_low) * r_step
+            
+            # Update alpha
+            p_prior = f_prior[sym] / 16384.0
+            p_adapt = f_adapt[sym] / 16384.0
+            p_mix = f_mix[sym] / float(cum)
+            grad = (p_prior - p_adapt) / (p_mix + 1e-9)
+            alpha = min(max(alpha + eta * grad, 0.01), 0.99)
+            
+            # Update adaptive counts
+            adapt_counts[ctx, sym] += 1
+            adapt_totals[ctx] += 1
+            if adapt_totals[ctx] >= 2048:
+                new_tot = 0
+                for s in range(4):
+                    adapt_counts[ctx, s] = (adapt_counts[ctx, s] + 1) >> 1
+                    new_tot += adapt_counts[ctx, s]
+                adapt_totals[ctx] = new_tot
+                
+            while True:
+                if (low ^ (low + range_val)) < RC_TOP:
+                    byte_val = payload[in_ptr] if in_ptr < len(payload) else 0
+                    code = ((code << 8) | np.int64(byte_val)) & np.int64(0xFFFFFFFF)
+                    in_ptr += 1
+                    low = (low << 8) & np.int64(0xFFFFFFFF)
+                    range_val = (range_val << 8) & np.int64(0xFFFFFFFF)
+                elif range_val < RC_BOT:
+                    byte_val = payload[in_ptr] if in_ptr < len(payload) else 0
+                    code = ((code << 8) | np.int64(byte_val)) & np.int64(0xFFFFFFFF)
+                    in_ptr += 1
+                    range_val = ((-low) & (RC_BOT - 1)) << 8
+                    low = (low << 8) & np.int64(0xFFFFFFFF)
+                else:
+                    break
+                    
+    alpha_state[0] = alpha
     return decoded

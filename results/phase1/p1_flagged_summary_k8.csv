@@ -1,0 +1,11 @@
+K,Dataset,N_Frames,Codec,Bits/Frame,95% CI Lower,95% CI Upper,1-Cam 10Hz (kb/s),6-Cam 10Hz (kb/s),Gain vs SemCM(a) (%)
+8,Bhubaneswar_Night_Native,1811,Yang et al. 2026,5096.0,4996.3,5207.1,50.96,305.76,54.79
+8,Bhubaneswar_Night_Native,1811,SemCM (a) [Frame-Indep] (Frozen Ref),11270.7,11029.1,11502.1,112.71,676.24,0.0
+8,Bhubaneswar_Night_Native,1811,JPEG-XL (Effort 9),12332.7,12113.1,12563.1,123.33,739.96,-9.42
+8,Bhubaneswar_Night_Native,1811,WebP Lossless,19076.5,18690.8,19480.9,190.76,1144.59,-69.26
+8,Bhubaneswar_Night_Native,1811,PNG (OpenCV level 9),35406.7,34881.7,35931.2,354.07,2124.4,-214.15
+8,Bhubaneswar_Night_10Hz,604,Yang et al. 2026,5053.8,4862.3,5227.0,50.54,303.23,54.93
+8,Bhubaneswar_Night_10Hz,604,SemCM (a) [Frame-Indep] (Frozen Ref),11214.4,10815.5,11606.9,112.14,672.86,0.0
+8,Bhubaneswar_Night_10Hz,604,JPEG-XL (Effort 9),12256.6,11854.0,12652.5,122.57,735.4,-9.29
+8,Bhubaneswar_Night_10Hz,604,WebP Lossless,18954.5,18279.8,19663.3,189.55,1137.27,-69.02
+8,Bhubaneswar_Night_10Hz,604,PNG (OpenCV level 9),35217.5,34295.9,36099.4,352.18,2113.05,-214.04

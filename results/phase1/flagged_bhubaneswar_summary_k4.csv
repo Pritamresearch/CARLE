@@ -1,0 +1,9 @@
+K,Dataset,Codec,Bits/Frame,Bitrate (kb/s)
+4,Field_Bhubaneswar_Night (FLAGGED),WebP Lossless (method 4),16227.0,405.7
+4,Field_Bhubaneswar_Night (FLAGGED),JPEG-XL (Effort 7),11362.2,284.1
+4,Field_Bhubaneswar_Night (FLAGGED),JPEG-XL (Effort 9),10365.8,259.1
+4,Field_Bhubaneswar_Night (FLAGGED),Yang et al. 2026,4454.6,111.4
+4,Field_Bhubaneswar_Night (FLAGGED),SemCM (a) [Frame-Indep] (Frozen Ref),8241.6,206.0
+4,Field_Bhubaneswar_Night (FLAGGED),SemCM (b) [Persistent N=30],7880.4,197.0
+4,Field_Bhubaneswar_Night (FLAGGED),Compact Temporal,8267.6,206.7
+4,Field_Bhubaneswar_Night (FLAGGED),Compact Temporal + Global MC,8310.8,207.8

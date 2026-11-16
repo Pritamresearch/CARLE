@@ -1,0 +1,112 @@
+diff --git a/source/commonlib/global_arithmetic.cpp b/source/commonlib/global_arithmetic.cpp
+index d2346f6..4819bee 100644
+--- a/source/commonlib/global_arithmetic.cpp
++++ b/source/commonlib/global_arithmetic.cpp
+@@ -986,6 +986,7 @@ int get_direction2(int direction)
+ 		return 7;
+ 	if (direction == 15 || direction == 23)
+ 		return 8;
++	return 0;
+ }
+ 
+ void enc_global()
+diff --git a/source/commonlib/utility.cpp b/source/commonlib/utility.cpp
+index 8061532..8c34148 100644
+--- a/source/commonlib/utility.cpp
++++ b/source/commonlib/utility.cpp
+@@ -724,6 +724,7 @@ int get_3OT(int direction1, int direction2, int *direction_list, int *num,
+ 			break;
+ 		}
+ 	}
++	return 0;
+ }
+ 
+ int get_direction1(int direction, int *index)
+@@ -769,6 +770,7 @@ int get_direction1(int direction, int *index)
+ 	else if (direction == 25 || direction == 28 || direction == 31 ||
+ 		direction == 34)
+ 		return 8;
++	return 0;
+ }
+ 
+ int get_RMSC(int index, int direction)
+@@ -968,6 +970,7 @@ int get_dec_MSC(int index, int direction)
+ 	if ((index == 1 && direction == 20) || (index == 2 && direction == 3) ||
+ 		(index == 3 && direction == 26))
+ 		return 32;
++	return 0;
+ }
+ 
+ int get_rmse_index(int rmse)
+@@ -1031,6 +1034,7 @@ int get_rmse_index(int rmse)
+ 	case -1:
+ 		return 20;
+ 	}
++	return 0;
+ }
+ 
+ void get_forbidden1(int x, int y, int pic_w, int pic_h, int *forbidden,
+@@ -5132,6 +5136,7 @@ int to_3OT(int direct_pre, int direct_cur, int *turn)
+ 			return 1;
+ 		}
+ 	}
++	return 0;
+ }
+ 
+ int get_position_3OT(int x, int y, int pic_w, int pic_h)
+diff --git a/source/decoder/decoder.cpp b/source/decoder/decoder.cpp
+index a9396f8..e30bd21 100644
+--- a/source/decoder/decoder.cpp
++++ b/source/decoder/decoder.cpp
+@@ -2347,6 +2347,7 @@ int get_overlap_3OT(unsigned char *img, int pic_height, int pic_width,
+ 				return 2;
+ 		}
+ 	}
++	return 0;
+ }
+ 
+ void deObjectEdge_3OT(unsigned char *img, int pic_height, int pic_width,
+
+
+Detailed Analysis of Edits:
+1. source/commonlib/global_arithmetic.cpp (Line 986):
+   - Function: int get_direction2(int direction)
+   - Edit: Added 'return 0;' after exhaustive if-ladder covering direction in [0..26].
+   - Justification: ISO C++ [stmt.return] specifies flowing off the end of a non-void function
+     is undefined behavior. Modern GCC (v8+) inserts a 'ud2' (illegal instruction / SIGILL) trap
+     unless an explicit return is present. Every valid direction in [0, 26] hits an early return.
+     The added return 0 is unreachable for valid inputs and prevents compiler SIGILL traps.
+
+2. source/commonlib/utility.cpp (Line 724):
+   - Function: int get_3OT(int direction1, int direction2, int *direction_list, int *num, ...)
+   - Edit: Added 'return 0;' at function end.
+   - Justification: Satisfies compiler return contract for non-void function.
+
+3. source/commonlib/utility.cpp (Line 770):
+   - Function: int get_direction1(int direction, int *index)
+   - Edit: Added 'return 0;' after exhaustive if/else-if ladder covering directions [0..35].
+   - Justification: Every valid direction in [0..35] returns in early if-branches.
+
+4. source/commonlib/utility.cpp (Line 970):
+   - Function: int get_dec_MSC(int index, int direction)
+   - Edit: Added 'return 0;' after branch table.
+
+5. source/commonlib/utility.cpp (Line 1034):
+   - Function: int get_rmse_index(int rmse)
+   - Edit: Added 'return 0;' after switch (rmse) covering cases -1..26.
+   - Justification: Switch cases return directly; return 0 handles missing default.
+
+6. source/commonlib/utility.cpp (Line 5136):
+   - Function: int to_3OT(int direct_pre, int direct_cur, int *turn)
+   - Edit: Added 'return 0;' after modulo-4 branches covering delta = 0, 1, 3.
+   - Justification: Delta = 2 (180-degree reversal) is impossible in simple non-intersecting
+     contour chains; return 0 satisfies compiler control-flow.
+
+7. source/decoder/decoder.cpp (Line 2347):
+   - Function: int get_overlap_3OT(unsigned char *img, int pic_height, int pic_width, ...)
+   - Edit: Added 'return 0;' after switch (direction) cases 0..3.
+
+Confirmation:
+None of the edits modify data structures, boundary tracking, Golomb-Rice coding,
+arithmetic coding probability models, or bitstream syntax. They strictly satisfy
+ISO C++ control-flow requirements.

@@ -1,0 +1,25 @@
+condition,codec,N_pairs,mean_bpf_Kb,gain_vs_cm_intra_pct
+Field_Native (All Pairs),FullMap_Zstd19,510,5.427864583333333,47.76190476190476
+Field_Native (All Pairs),JPEG-XL_effort7,510,4.013373161764706,61.375055285272
+Field_Native (All Pairs),JPEG-XL_effort9,510,3.9886488970588236,61.61300309597524
+Field_Native (All Pairs),WebP_lossless,510,4.574785539215687,55.9719887955182
+Field_Native (All Pairs),CM-intra,510,10.390625,0.0
+Field_Native (All Pairs),CM-temporal,510,12.590088848039215,-21.167772372106736
+Field_Native (All Pairs),CM-MC-global,510,12.391329656862744,-19.254901960784306
+Field_Native (All Pairs),CM-MC-block,510,12.554626225490196,-20.826477959604894
+Field_Native (All Pairs),CM-prior-adaptive (w=64),510,3.6434742647058824,64.93498452012383
+Field_Native (All Pairs),CM-stream-persistent (N=30),510,3.1402113970588235,69.77841662980981
+Field_Native (All Pairs),CM-intra + SkipFlag,510,10.368761488970588,0.21041574524547185
+Field_Native (All Pairs),CM-temporal + SkipFlag,510,12.568225337009803,-20.957356626861262
+Field_Native (No Stationary/Identical),FullMap_Zstd19,439,6.264023348519363,47.99300836720551
+Field_Native (No Stationary/Identical),JPEG-XL_effort7,439,4.52094604214123,62.464890390050954
+Field_Native (No Stationary/Identical),JPEG-XL_effort9,439,4.492223092255125,62.703362396185625
+Field_Native (No Stationary/Identical),WebP_lossless,439,5.241386674259681,56.483439197764795
+Field_Native (No Stationary/Identical),CM-intra,439,12.044579299544418,0.0
+Field_Native (No Stationary/Identical),CM-temporal,439,14.599765091116174,-21.214404654784452
+Field_Native (No Stationary/Identical),CM-MC-global,439,14.366333285876992,-19.27633941038018
+Field_Native (No Stationary/Identical),CM-MC-block,439,14.534560079726651,-20.673040695380827
+Field_Native (No Stationary/Identical),CM-prior-adaptive (w=64),439,4.029310222095672,66.54669190273769
+Field_Native (No Stationary/Identical),CM-stream-persistent (N=30),439,3.4458819760820045,71.39059912028355
+Field_Native (No Stationary/Identical),CM-intra + SkipFlag,439,12.045555862044418,-0.00810790045640646
+Field_Native (No Stationary/Identical),CM-temporal + SkipFlag,439,14.600741653616174,-21.222512555240858
