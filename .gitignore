@@ -3,6 +3,7 @@ data/
 legacy_local/
 results/**/cache/
 results/**/cache_pidnet/
+results/**/cache_pidnet_half/
 results/**/overlays/
 __pycache__/
 *.pyc

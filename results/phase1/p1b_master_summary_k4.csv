@@ -1,0 +1,17 @@
+K,Dataset,N_Frames,Codec,Bits/Frame,95% CI Lower,95% CI Upper,1-Cam 10Hz (kb/s),6-Cam 10Hz (kb/s),Gain vs SemCM(a) (%)
+4,nuScenes_Keyframes_2Hz,2424,Yang et al. 2026,2607.1,2363.3,2862.7,26.07,156.43,42.37
+4,nuScenes_Keyframes_2Hz,2424,SemCM (a) [Frame-Indep] (Frozen Ref),4524.1,4110.2,4938.1,45.24,271.45,0.0
+4,nuScenes_Keyframes_2Hz,2424,JPEG-XL (Effort 9),6938.2,6340.5,7523.4,69.38,416.29,-53.36
+4,nuScenes_Keyframes_2Hz,2424,WebP Lossless,9128.7,8321.3,9982.3,91.29,547.72,-101.78
+4,nuScenes_Sweeps_12Hz,6000,Yang et al. 2026,2648.7,2399.6,2932.0,26.49,158.92,41.84
+4,nuScenes_Sweeps_12Hz,6000,SemCM (a) [Frame-Indep] (Frozen Ref),4554.1,4184.7,4939.1,45.54,273.24,0.0
+4,nuScenes_Sweeps_12Hz,6000,JPEG-XL (Effort 9),7030.6,6407.3,7611.9,70.31,421.83,-54.38
+4,nuScenes_Sweeps_12Hz,6000,WebP Lossless,9220.8,8374.5,10053.4,92.21,553.25,-102.47
+4,Field_Native,3673,Yang et al. 2026,2907.6,1502.6,5579.3,29.08,174.46,45.66
+4,Field_Native,3673,SemCM (a) [Frame-Indep] (Frozen Ref),5350.4,3190.7,9717.4,53.5,321.02,0.0
+4,Field_Native,3673,JPEG-XL (Effort 9),7645.8,4688.2,13127.3,76.46,458.75,-42.9
+4,Field_Native,3673,WebP Lossless,10933.9,6505.4,19801.4,109.34,656.03,-104.36
+4,Field_10Hz,1399,Yang et al. 2026,3276.1,1582.0,5639.3,32.76,196.56,44.95
+4,Field_10Hz,1399,SemCM (a) [Frame-Indep] (Frozen Ref),5951.0,3148.0,9830.1,59.51,357.06,0.0
+4,Field_10Hz,1399,JPEG-XL (Effort 9),8404.0,4939.4,13011.6,84.04,504.24,-41.22
+4,Field_10Hz,1399,WebP Lossless,12154.4,6403.4,20098.1,121.54,729.26,-104.24

@@ -81,7 +81,7 @@ flowchart TD
 
 ## 4. Key Experimental Results
 
-### Table 1: End-to-End Codec Master Benchmark (Unflagged Datasets)
+### Table 1: Full-Resolution Codec Master Benchmark ($900\times 1600$)
 Measured across all cached frames with 95% bootstrap confidence intervals clustered by scene/clip (1,000 resamples). Bitrates assume a 10 Hz stream transmission rate.
 
 #### Granularity $K = 4$
@@ -134,6 +134,109 @@ Measured across all cached frames with 95% bootstrap confidence intervals cluste
 
 ---
 
+### Table 2: Recommended Operating Point — Half Resolution ($450\times 800$)
+At half resolution, neural segmentation latency satisfies real-time V2X requirements while preserving spatial accuracy. Evaluated across all 13,496 unflagged frames with 95% bootstrap CIs.
+
+#### Granularity $K = 4$ ($450\times 800$)
+| Dataset | $N$ Frames | Codec | Bits/Frame | 95% CI Lower | 95% CI Upper | 1-Cam 10 Hz | 6-Cam 10 Hz | Gain vs SemCM (a) |
+| :--- | :---: | :--- | :---: | :---: | :---: | :---: | :---: | :---: |
+| **nuScenes Keyframes (2 Hz)** | 2,424 | **Yang et al. 2026** | **2,607.1** | 2,363.3 | 2,862.7 | **26.1 kb/s** | **156.4 kb/s** | **+42.37%** |
+| | | SemCM (a) [Frame-Indep] | 4,524.1 | 4,110.2 | 4,938.1 | 45.2 kb/s | 271.5 kb/s | 0.00% (Ref) |
+| | | JPEG-XL (Effort 9) | 6,938.2 | 6,340.5 | 7,523.4 | 69.4 kb/s | 416.3 kb/s | -53.36% |
+| | | WebP Lossless | 9,128.7 | 8,321.3 | 9,982.3 | 91.3 kb/s | 547.7 kb/s | -101.78% |
+| **nuScenes Sweeps (12 Hz)** | 6,000 | **Yang et al. 2026** | **2,648.7** | 2,399.6 | 2,932.0 | **26.5 kb/s** | **158.9 kb/s** | **+41.84%** |
+| | | SemCM (a) [Frame-Indep] | 4,554.1 | 4,184.7 | 4,939.1 | 45.5 kb/s | 273.2 kb/s | 0.00% (Ref) |
+| | | JPEG-XL (Effort 9) | 7,030.6 | 6,407.3 | 7,611.9 | 70.3 kb/s | 421.8 kb/s | -54.38% |
+| | | WebP Lossless | 9,220.8 | 8,374.5 | 10,053.4 | 92.2 kb/s | 553.3 kb/s | -102.47% |
+| **Field Native (25 Hz)** | 3,673 | **Yang et al. 2026** | **2,907.6** | 1,502.6 | 5,579.3 | **29.1 kb/s** | **174.5 kb/s** | **+45.66%** |
+| | | SemCM (a) [Frame-Indep] | 5,350.4 | 3,190.7 | 9,717.4 | 53.5 kb/s | 321.0 kb/s | 0.00% (Ref) |
+| | | JPEG-XL (Effort 9) | 7,645.8 | 4,688.2 | 13,127.3 | 76.5 kb/s | 458.8 kb/s | -42.90% |
+| | | WebP Lossless | 10,933.9 | 6,505.4 | 19,801.4 | 109.3 kb/s | 656.0 kb/s | -104.36% |
+| **Field 10 Hz** | 1,399 | **Yang et al. 2026** | **3,276.1** | 1,582.0 | 5,639.3 | **32.8 kb/s** | **196.6 kb/s** | **+44.95%** |
+| | | SemCM (a) [Frame-Indep] | 5,951.0 | 3,148.0 | 9,830.1 | 59.5 kb/s | 357.1 kb/s | 0.00% (Ref) |
+| | | JPEG-XL (Effort 9) | 8,404.0 | 4,939.4 | 13,011.6 | 84.0 kb/s | 504.2 kb/s | -41.22% |
+| | | WebP Lossless | 12,154.4 | 6,403.4 | 20,098.1 | 121.5 kb/s | 729.3 kb/s | -104.24% |
+
+#### Granularity $K = 8$ ($450\times 800$)
+| Dataset | $N$ Frames | Codec | Bits/Frame | 95% CI Lower | 95% CI Upper | 1-Cam 10 Hz | 6-Cam 10 Hz | Gain vs SemCM (a) |
+| :--- | :---: | :--- | :---: | :---: | :---: | :---: | :---: | :---: |
+| **nuScenes Keyframes (2 Hz)** | 2,424 | **Yang et al. 2026** | **5,487.5** | 5,059.2 | 5,935.3 | **54.9 kb/s** | **329.3 kb/s** | **+49.23%** |
+| | | SemCM (a) [Frame-Indep] | 10,808.3 | 10,037.3 | 11,622.3 | 108.1 kb/s | 648.5 kb/s | 0.00% (Ref) |
+| | | JPEG-XL (Effort 9) | 12,799.0 | 11,858.6 | 13,703.4 | 128.0 kb/s | 767.9 kb/s | -18.42% |
+| | | WebP Lossless | 18,979.0 | 17,415.4 | 20,406.9 | 189.8 kb/s | 1,138.7 kb/s | -75.60% |
+| **nuScenes Sweeps (12 Hz)** | 6,000 | **Yang et al. 2026** | **5,440.6** | 4,964.1 | 5,927.7 | **54.4 kb/s** | **326.4 kb/s** | **+48.87%** |
+| | | SemCM (a) [Frame-Indep] | 10,640.5 | 9,855.6 | 11,487.3 | 106.4 kb/s | 638.4 kb/s | 0.00% (Ref) |
+| | | JPEG-XL (Effort 9) | 12,744.4 | 11,833.8 | 13,626.1 | 127.4 kb/s | 764.7 kb/s | -19.77% |
+| | | WebP Lossless | 18,759.9 | 17,259.3 | 20,152.8 | 187.6 kb/s | 1,125.6 kb/s | -76.31% |
+| **Field Native (25 Hz)** | 3,673 | **Yang et al. 2026** | **4,924.6** | 3,288.9 | 7,572.2 | **49.3 kb/s** | **295.5 kb/s** | **+52.58%** |
+| | | SemCM (a) [Frame-Indep] | 10,384.5 | 7,246.4 | 15,356.5 | 103.8 kb/s | 623.1 kb/s | 0.00% (Ref) |
+| | | JPEG-XL (Effort 9) | 12,251.9 | 8,661.2 | 17,796.5 | 122.5 kb/s | 735.1 kb/s | -17.98% |
+| | | WebP Lossless | 18,253.4 | 12,980.6 | 26,529.3 | 182.5 kb/s | 1,095.2 kb/s | -75.78% |
+| **Field 10 Hz** | 1,399 | **Yang et al. 2026** | **5,249.3** | 3,482.3 | 7,569.4 | **52.5 kb/s** | **315.0 kb/s** | **+52.29%** |
+| | | SemCM (a) [Frame-Indep] | 11,002.2 | 7,236.7 | 15,373.6 | 110.0 kb/s | 660.1 kb/s | 0.00% (Ref) |
+| | | JPEG-XL (Effort 9) | 12,948.6 | 8,724.8 | 17,831.8 | 129.5 kb/s | 776.9 kb/s | -17.69% |
+| | | WebP Lossless | 19,248.9 | 12,964.1 | 26,495.7 | 192.5 kb/s | 1,154.9 kb/s | -74.96% |
+
+---
+
+### Table 3: Cool-Machine Timing Verification Pass
+Measured on **Intel Core i7-13620H @ 2.40 GHz** and **NVIDIA RTX 3050 Laptop GPU** following a strict cool-machine protocol ($\ge 30\text{ s}$ idle, core temp $< 70^\circ\text{C}$, median of 15 runs).
+
+| Stage | Model / Codec | Resolution | Config | Encode / Batch (ms) | Decode / Frame (ms) | Frame Rate | Temperature (°C) |
+| :--- | :--- | :--- | :--- | :---: | :---: | :---: | :---: |
+| **Perception** | PIDNet-S | Full ($900\times 1600$) | Batch 1 | 63.86 ms | — | 15.7 FPS | 68.1°C |
+| **Perception** | PIDNet-S | Full ($900\times 1600$) | Batch 6 | 333.63 ms total | 55.61 ms/frame | 18.0 FPS | 68.1°C |
+| **Perception** | **PIDNet-S** | **Half ($450\times 800$)** | **Batch 1** | **23.74 ms** | — | **42.1 FPS** | **69.1°C** |
+| **Perception** | **PIDNet-S** | **Half ($450\times 800$)** | **Batch 6** | **97.13 ms total** | **16.19 ms/frame** | **61.8 FPS** | **69.1°C** |
+| **Compression** | Yang et al. 2026 | Full ($900\times 1600$) | $K=4$ | 9.48 ms | 2.87 ms | — | 69.1°C |
+| **Compression** | Yang et al. 2026 | Full ($900\times 1600$) | $K=8$ | 14.44 ms | 5.38 ms | — | 69.1°C |
+| **Compression** | **Yang et al. 2026** | **Half ($450\times 800$)** | **$K=4$** | **3.03 ms** | **1.07 ms** | — | **69.1°C** |
+| **Compression** | **Yang et al. 2026** | **Half ($450\times 800$)** | **$K=8$** | **4.97 ms** | **1.62 ms** | — | **69.1°C** |
+| **Compression** | SemCM (a) [Indep] | Half ($450\times 800$) | $K=4$ | 4.96 ms | 63.04 ms | — | 68.1°C |
+| **Compression** | SemCM (a) [Indep] | Half ($450\times 800$) | $K=8$ | 4.40 ms | 48.99 ms | — | 69.1°C |
+| **Compression** | JPEG-XL (Effort 9) | Half ($450\times 800$) | $K=4$ | 398.53 ms | 20.55 ms | — | 68.1°C |
+| **Compression** | WebP Lossless | Half ($450\times 800$) | $K=4$ | 8.12 ms | 2.30 ms | — | 68.1°C |
+
+---
+
+### Table 4: Phase 2 — Slice-Based Coding & MTU Packetization ($450\times 800$)
+Independent horizontal slicing ($S \in \{1, 2, 4, 8\}$) evaluated on 4,673 frames per $K$ against a standard 1,200-byte wireless MTU limit.
+
+| $K$ | Slices ($S$) | Mean Frame Bits | Overhead vs $S=1$ (%) | Median Slice Bytes | 99th %ile Slice (B) | Max Slice Bytes | % Slices $\le 1200\text{ B}$ | % Slices $\le 600\text{ B}$ |
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| **4** | 1 | 2,917.0 | 0.00% | 307.0 B | 1,053.3 B | 1,511 B | 99.79% | 81.51% |
+| **4** | 2 | 3,007.7 | +3.11% | 137.0 B | 647.5 B | 1,029 B | **100.00%** | 98.25% |
+| **4** | **4** | **3,172.6** | **+8.76%** | **65.0 B** | **423.1 B** | **682 B** | **100.00%** | **99.97%** |
+| **4** | 8 | 3,479.9 | +19.30% | 33.0 B | 283.2 B | 504 B | **100.00%** | 100.00% |
+| **8** | 1 | 5,214.6 | 0.00% | 640.0 B | 1,372.3 B | 1,876 B | 95.91% | 47.25% |
+| **8** | 2 | 5,369.0 | +2.96% | 282.0 B | 899.5 B | 1,264 B | 99.95% | 88.62% |
+| **8** | **4** | **5,603.9** | **+7.47%** | **141.0 B** | **628.1 B** | **831 B** | **100.00%** | **98.64%** |
+| **8** | 8 | 6,042.9 | +15.88% | 71.0 B | 383.0 B | 644 B | **100.00%** | 99.97% |
+
+---
+
+### Table 5: Phase 3 — Packet Loss & Transmission Resilience (nuScenes 12 Hz)
+Simulated over 1,200-byte MTU packets (12-byte header: `frame_id`, `slice_id`, `pkt_idx`, `pkt_count`, `crc32`) across 5 seeds.
+
+| Channel Loss Model | Transmission Scheme | $K=4$ Pixel Acc | $K=4$ mIoU | $K=4$ Mean AoI | $K=8$ Pixel Acc | $K=8$ mIoU | $K=8$ Mean AoI | Effective kb/s ($K=4$ / $K=8$) |
+| :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| **0% Loss** | Yang Whole-Frame | 100.0% | 100.0% | 83.3 ms | 100.0% | 100.0% | 83.3 ms | 54.6 / 109.8 kb/s |
+| | Yang 4-Slices | 100.0% | 100.0% | 83.3 ms | 100.0% | 100.0% | 83.3 ms | 61.5 / 119.3 kb/s |
+| | SemCM Persistent ($N=30$) | 100.0% | 100.0% | 83.3 ms | 100.0% | 100.0% | 83.3 ms | 84.5 / 198.5 kb/s |
+| | Compact Temporal | 100.0% | 100.0% | 83.3 ms | 100.0% | 100.0% | 83.3 ms | 84.5 / 198.5 kb/s |
+| **10% Bernoulli** | **Yang 4-Slices** | **99.59%** | **97.62%** | **83.3 ms** | **99.16%** | **97.10%** | **83.3 ms** | 61.5 / 119.3 kb/s |
+| | **Yang 8-Slices** | **99.54%** | **97.09%** | **83.3 ms** | **99.09%** | **96.58%** | **83.3 ms** | 70.5 / 130.8 kb/s |
+| | Yang Whole-Frame | 99.54% | 97.72% | 90.8 ms | 98.71% | 96.09% | 99.8 ms | 54.6 / 109.8 kb/s |
+| | SemCM Persistent ($N=30$) | 90.07% | 65.13% | 856.2 ms | 86.42% | 58.74% | 884.2 ms | 84.5 / 198.5 kb/s |
+| | Compact Temporal | 80.22% | 44.18% | 4,015.5 ms | 78.49% | 40.56% | 3,822.4 ms | 84.5 / 198.5 kb/s |
+| **Burst 2 ($L_B=5, P_L=10\%$)** | **Yang 8-Slices** | **99.56%** | **97.53%** | **84.5 ms** | **99.13%** | **96.88%** | **84.5 ms** | 70.5 / 130.8 kb/s |
+| | **Yang 4-Slices** | **99.53%** | **97.37%** | **89.3 ms** | **99.06%** | **96.48%** | **92.3 ms** | 61.5 / 119.3 kb/s |
+| | Yang Whole-Frame | 99.30% | 97.11% | 106.7 ms | 98.49% | 95.38% | 134.5 ms | 54.6 / 109.8 kb/s |
+| | SemCM Persistent ($N=30$) | 96.67% | 89.11% | 298.2 ms | 93.63% | 83.25% | 647.8 ms | 84.5 / 198.5 kb/s |
+| | Compact Temporal | 89.81% | 71.16% | 1,656.5 ms | 85.34% | 64.91% | 2,534.8 ms | 84.5 / 198.5 kb/s |
+
+---
+
 ### Table 2: Edge Hardware Latency & Multi-Camera Throughput
 Evaluated on **Intel Core i7-13620H** and **NVIDIA GeForce RTX 3050 6GB Laptop GPU** (FP16 mode):
 
@@ -173,18 +276,27 @@ CARLE V2/
 │   ├── exp_11_pidnet_caching.py        # PIDNet segmentation caching
 │   ├── exp_14_unified_freeze_benchmark.py # Unified 2-fold freeze runner
 │   ├── exp_16_pidnet_sweep.py          # Latency, FPS, granularity & flicker study
-│   └── exp_16_run_all_frames_p1.py     # Master all-frame benchmark runner
+│   ├── exp_16_run_all_frames_p1.py     # Master all-frame benchmark runner (Full Res)
+│   ├── exp_17_cache_pidnet_half.py     # Phase 1b: Half-resolution map caching
+│   ├── exp_18_cool_timing_pass.py      # Strict cool-machine timing verification pass
+│   ├── exp_19_p1b_all_frames.py        # Phase 1b: All-frame benchmark at 450x800
+│   ├── exp_20_p2_slices.py             # Phase 2: Slice-based coding benchmark
+│   ├── exp_21_p3_packet_loss.py        # Phase 3: Packet loss resilience & transmission simulation
+│   └── fast_pretrain.py                # Accelerated Numba JIT 2-fold model pretrainer
 ├── results/
 │   ├── phase0/
 │   │   └── env.json                    # Hardware identity (i7-13620H, RTX 3050 Laptop)
-│   └── phase1/                         # Summary tables & benchmark CSVs
-│       ├── p1_master_summary_k4.csv    # Master summary table (K=4)
-│       ├── p1_master_summary_k8.csv    # Master summary table (K=8)
-│       ├── p1_flagged_summary_k4.csv   # Flagged Bhubaneswar summary (K=4)
-│       ├── p1_flagged_summary_k8.csv   # Flagged Bhubaneswar summary (K=8)
-│       ├── pidnet_latency_benchmark.json
-│       ├── pidnet_granularity_flicker_study.json
-│       └── p0_dead_code_and_timing_results.json
+│   ├── phase1/                         # Summary tables & benchmark CSVs (Full & Half Res)
+│   │   ├── cool_timing_summary.csv     # Verified cool-machine timing table
+│   │   ├── p1b_master_summary_k4.csv   # Half-resolution master summary table (K=4)
+│   │   ├── p1b_master_summary_k8.csv   # Half-resolution master summary table (K=8)
+│   │   ├── p1b_flagged_summary_k4.csv  # Half-resolution flagged Bhubaneswar summary (K=4)
+│   │   └── p1b_flagged_summary_k8.csv  # Half-resolution flagged Bhubaneswar summary (K=8)
+│   ├── phase2/
+│   │   ├── p2_slice_benchmark.csv      # Slice overhead and payload distribution table
+│   │   └── p2_slice_distribution.json  # Detailed quantile and MTU statistics
+│   └── phase3/
+│       └── p3_packet_loss_summary.csv  # Resilience benchmark across channels and schemes
 └── README.md
 ```
 
@@ -206,19 +318,30 @@ g++ -std=c++17 -O3 -static source/commonlib/*.cpp source/arithmetic_coder/*.cpp 
 g++ -std=c++17 -O3 -static source/commonlib/*.cpp source/arithmetic_coder/*.cpp source/arithmetic_coder/third_party/*.cpp source/decoder/*.cpp -I source/commonlib -I source/arithmetic_coder -I source/arithmetic_coder/third_party -I source/decoder -o decoder.exe
 ```
 
-### 2. Verify Lossless Reconstruction & Dead-Code Counters
+### 2. Verify Lossless Reconstruction & Dead-Code Counters (Phase 0)
 ```bash
 python experiments/run_p0_dead_code_sample.py
 ```
 
-### 3. Run PIDNet Latency & Flicker Profiling
+### 3. Run Cool-Machine Timing Verification Pass
 ```bash
-python experiments/exp_16_pidnet_sweep.py
+python experiments/exp_18_cool_timing_pass.py
 ```
 
-### 4. Run the Master All-Frame Benchmark
+### 4. Run Half-Resolution Master All-Frame Benchmark (Phase 1b)
 ```bash
-python experiments/exp_16_run_all_frames_p1.py
+python experiments/exp_17_cache_pidnet_half.py
+python experiments/exp_19_p1b_all_frames.py
+```
+
+### 5. Run Slice-Based Coding Benchmark (Phase 2)
+```bash
+python experiments/exp_20_p2_slices.py
+```
+
+### 6. Run Packet Loss & Resilience Simulation (Phase 3)
+```bash
+python experiments/exp_21_p3_packet_loss.py
 ```
 
 ---

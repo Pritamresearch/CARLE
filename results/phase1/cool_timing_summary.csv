@@ -1,0 +1,21 @@
+stage,codec,resolution,batch,median_total_ms,median_per_frame_ms,fps,temp_start_c,temp_end_c,clock_mhz,K,median_encode_ms,median_decode_ms
+perception,PIDNet-S,Full (900x1600),1.0,63.86,63.86,15.7,68.1,68.1,2400.0,,,
+perception,PIDNet-S,Full (900x1600),6.0,333.63,55.61,18.0,68.1,68.1,2400.0,,,
+perception,PIDNet-S,Half (450x800),1.0,23.74,23.74,42.1,69.1,69.1,2400.0,,,
+perception,PIDNet-S,Half (450x800),6.0,97.13,16.19,61.8,69.1,69.1,2400.0,,,
+compression,Yang et al. 2026,Full (900x1600),,,,,69.1,69.1,2400.0,4.0,9.48,2.87
+compression,Yang et al. 2026,Full (900x1600),,,,,69.1,69.1,2400.0,8.0,14.44,5.38
+compression,Yang et al. 2026,Half (450x800),,,,,69.1,69.1,2400.0,4.0,3.03,1.07
+compression,Yang et al. 2026,Half (450x800),,,,,69.1,69.1,2400.0,8.0,4.97,1.62
+compression,SemCM (a) [Frame-Indep],Full (900x1600),,,,,69.1,80.1,2400.0,4.0,18.02,198.38
+compression,SemCM (a) [Frame-Indep],Full (900x1600),,,,,69.1,80.1,2400.0,8.0,17.93,194.6
+compression,SemCM (a) [Frame-Indep],Half (450x800),,,,,68.1,68.1,2400.0,4.0,4.96,63.04
+compression,SemCM (a) [Frame-Indep],Half (450x800),,,,,69.1,69.1,2400.0,8.0,4.4,48.99
+compression,JPEG-XL (Effort 9),Full (900x1600),,,,,68.1,87.1,2400.0,4.0,875.81,70.41
+compression,JPEG-XL (Effort 9),Full (900x1600),,,,,69.1,83.1,2400.0,8.0,1020.58,75.24
+compression,JPEG-XL (Effort 9),Half (450x800),,,,,68.1,84.1,2400.0,4.0,398.53,20.55
+compression,JPEG-XL (Effort 9),Half (450x800),,,,,68.1,82.1,2400.0,8.0,438.8,21.81
+compression,WebP Lossless,Full (900x1600),,,,,68.1,69.1,2400.0,4.0,32.55,11.08
+compression,WebP Lossless,Full (900x1600),,,,,68.1,68.1,2400.0,8.0,99.65,13.38
+compression,WebP Lossless,Half (450x800),,,,,68.1,68.1,2400.0,4.0,8.12,2.3
+compression,WebP Lossless,Half (450x800),,,,,67.1,67.1,2400.0,8.0,23.6,2.84
