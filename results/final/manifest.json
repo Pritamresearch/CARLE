@@ -1,0 +1,137 @@
+{
+  "metadata": {
+    "generated_at": "2026-11-19T12:51:20.145354",
+    "git_commit": "e105a203d21a1ee3a99c6972491f308dab683749",
+    "total_tables": 16
+  },
+  "tables": [
+    {
+      "table_name": "P1_Master_Summary_K4",
+      "output_file": "results/final/p1_master_summary_k4.csv",
+      "generating_script": "experiments/exp_16_run_all_frames_p1.py",
+      "git_commit": "e105a203d21a1ee3a99c6972491f308dab683749",
+      "output_sha256": "2dfb988ea2702b92467bd88c488520e7134941732a83ca77c3043ab1937e5de8",
+      "timestamp": "2026-11-19T12:51:20.145354"
+    },
+    {
+      "table_name": "P1_Master_Summary_K8",
+      "output_file": "results/final/p1_master_summary_k8.csv",
+      "generating_script": "experiments/exp_16_run_all_frames_p1.py",
+      "git_commit": "e105a203d21a1ee3a99c6972491f308dab683749",
+      "output_sha256": "f02a690289b98636a16c07df72c3c1276e12529a9bf3cf2d76fcaf5caa6f1037",
+      "timestamp": "2026-11-19T12:51:20.145354"
+    },
+    {
+      "table_name": "P1b_Master_Summary_K4",
+      "output_file": "results/final/p1b_master_summary_k4.csv",
+      "generating_script": "experiments/exp_19_p1b_all_frames.py",
+      "git_commit": "e105a203d21a1ee3a99c6972491f308dab683749",
+      "output_sha256": "1794f006abb5f023ef7430d2b92c7c2917a6990337afe6913420a9d6f46a035d",
+      "timestamp": "2026-11-19T12:51:20.145354"
+    },
+    {
+      "table_name": "P1b_Master_Summary_K8",
+      "output_file": "results/final/p1b_master_summary_k8.csv",
+      "generating_script": "experiments/exp_19_p1b_all_frames.py",
+      "git_commit": "e105a203d21a1ee3a99c6972491f308dab683749",
+      "output_sha256": "201e719a9df38fb315fb4111d7fb7ba72306746ab09e412f785c0d2dba323ee4",
+      "timestamp": "2026-11-19T12:51:20.145354"
+    },
+    {
+      "table_name": "Cool_Timing_Summary",
+      "output_file": "results/final/cool_timing_summary.csv",
+      "generating_script": "experiments/exp_18_cool_timing_pass.py",
+      "git_commit": "e105a203d21a1ee3a99c6972491f308dab683749",
+      "output_sha256": "fc821475082c9664654fa705cfa6e0789a0538d6796de758b97198b16acd99d5",
+      "timestamp": "2026-11-19T12:51:20.145354"
+    },
+    {
+      "table_name": "GPU_Latency_Median_P95",
+      "output_file": "results/final/gpu_latency_median_p95.csv",
+      "generating_script": "experiments/exp_27_latency_isolation.py",
+      "git_commit": "e105a203d21a1ee3a99c6972491f308dab683749",
+      "output_sha256": "bda7fc5a35e9cee5718e3d479d44a7e9c52d87c5a00ea1b00cc7d47d8bf3f509",
+      "timestamp": "2026-11-19T12:51:20.145354"
+    },
+    {
+      "table_name": "P2_Slice_Benchmark",
+      "output_file": "results/final/p2_slice_benchmark.csv",
+      "generating_script": "experiments/exp_20_p2_slices.py",
+      "git_commit": "e105a203d21a1ee3a99c6972491f308dab683749",
+      "output_sha256": "3e9191aa16f3fa4f8cfb5fcad9f4dc194ba8f7cac0318f3267f49d0426405850",
+      "timestamp": "2026-11-19T12:51:20.145354"
+    },
+    {
+      "table_name": "P3_Packet_Loss_Summary",
+      "output_file": "results/final/p3_packet_loss_summary.csv",
+      "generating_script": "experiments/exp_25_p3_packet_loss_v3.py",
+      "git_commit": "e105a203d21a1ee3a99c6972491f308dab683749",
+      "output_sha256": "0e30a9d5d1e3f84dce42085c6bf8cada20e56d26bf6e3b7a9e1597ba28ddd75c",
+      "timestamp": "2026-11-19T12:51:20.145354"
+    },
+    {
+      "table_name": "P4_Latency_Budget_Summary",
+      "output_file": "results/final/p4_latency_budget_summary.csv",
+      "generating_script": "experiments/exp_22_p4_latency_budget.py",
+      "git_commit": "e105a203d21a1ee3a99c6972491f308dab683749",
+      "output_sha256": "c453511bc2b25aa4b25b7bc53d4c0e7ebf24435276fbff94b80975d06c47475c",
+      "timestamp": "2026-11-19T12:51:20.145354"
+    },
+    {
+      "table_name": "P5_NR_V2X_Capacity_Summary",
+      "output_file": "results/final/p5_nr_v2x_capacity_summary.csv",
+      "generating_script": "experiments/exp_26_p5_capacity_v2.py",
+      "git_commit": "e105a203d21a1ee3a99c6972491f308dab683749",
+      "output_sha256": "bd9d309b29ef7f4284d37bd5d3b1cf8deb27b0f063135aa276ef813334684617",
+      "timestamp": "2026-11-19T12:51:20.145354"
+    },
+    {
+      "table_name": "P5_NR_V2X_Sensitivity",
+      "output_file": "results/final/p5_nr_v2x_sensitivity.csv",
+      "generating_script": "experiments/exp_26_p5_capacity_v2.py",
+      "git_commit": "e105a203d21a1ee3a99c6972491f308dab683749",
+      "output_sha256": "a5321864b97b9614bc7bf1a966225736d2d4bd17c2b74024bfc9f81b156782eb",
+      "timestamp": "2026-11-19T12:51:20.145354"
+    },
+    {
+      "table_name": "Sweep_Scenes_Day_Night_Histograms",
+      "output_file": "results/final/sweep_scenes_day_night_and_histograms.csv",
+      "generating_script": "experiments/exp_24_sweep_scene_analysis.py",
+      "git_commit": "e105a203d21a1ee3a99c6972491f308dab683749",
+      "output_sha256": "7ceadedbdd708b7443b9f63e34645c92990f6d4095df69a8230a64a10752aba2",
+      "timestamp": "2026-11-19T12:51:20.145354"
+    },
+    {
+      "table_name": "Night_Speckle_Analysis",
+      "output_file": "results/final/night_speckle_analysis.csv",
+      "generating_script": "experiments/exp_28_night_speckle_analysis.py",
+      "git_commit": "e105a203d21a1ee3a99c6972491f308dab683749",
+      "output_sha256": "940ba17b8dab52bdd438f8da2b970410f939b7b03dacea03b621adbdd9d107fb",
+      "timestamp": "2026-11-19T12:51:20.145354"
+    },
+    {
+      "table_name": "Change_Statistics_K4",
+      "output_file": "results/final/change_statistics_k4_corrected.csv",
+      "generating_script": "experiments/exp_05_pairs_and_jitter.py",
+      "git_commit": "e105a203d21a1ee3a99c6972491f308dab683749",
+      "output_sha256": "25f3ca5a9ab5ec8c2e3c015e6e1a4db13ca6c78a4f8bb89936ebfe02bb49686b",
+      "timestamp": "2026-11-19T12:51:20.145354"
+    },
+    {
+      "table_name": "Change_Statistics_K8",
+      "output_file": "results/final/change_statistics_k8_corrected.csv",
+      "generating_script": "experiments/exp_05_pairs_and_jitter.py",
+      "git_commit": "e105a203d21a1ee3a99c6972491f308dab683749",
+      "output_sha256": "527bbe84fadefef04ce1c561ee0f26f06a7feb17667cab943d3d9c2412aa392d",
+      "timestamp": "2026-11-19T12:51:20.145354"
+    },
+    {
+      "table_name": "Temporal_Ablation_Summary",
+      "output_file": "results/final/compact_temporal_vs_semcm_summary.csv",
+      "generating_script": "experiments/exp_14_unified_freeze_benchmark.py",
+      "git_commit": "e105a203d21a1ee3a99c6972491f308dab683749",
+      "output_sha256": "15db8b1ab2380c3fc333483e893179de46236f49c5d53d9ff9b7e6a81f0ec30e",
+      "timestamp": "2026-11-19T12:51:20.145354"
+    }
+  ]
+}

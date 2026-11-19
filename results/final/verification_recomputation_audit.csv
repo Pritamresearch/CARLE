@@ -1,0 +1,9 @@
+Table,Metric,Frames_Compared,Max_Abs_Diff,Mean_Abs_Diff,Status
+P1 Full Res (K=4),Yang Bits (Recomputed vs CSV),200,0.0,0.0,EXACT
+P1 Full Res (K=8),Yang Bits (Recomputed vs CSV),200,0.0,0.0,EXACT
+P1b Half Res (K=4),Yang Bits (Recomputed vs CSV),200,0.0,0.0,EXACT
+P1b Half Res (K=8),Yang Bits (Recomputed vs CSV),200,0.0,0.0,EXACT
+P2 Slices (K=4),Slice Bytes (Recomputed vs CSV),200,0.0,0.0,EXACT
+P2 Slices (K=8),Slice Bytes (Recomputed vs CSV),200,0.0,0.0,EXACT
+P3 Packet Loss (0% Channel),AoI Baseline Consistency (AoI == T_proc),200,0.0,0.0,EXACT
+P5 Capacity,Usable Subchannels/s (CR_max=0.6),10,0.0,0.0,EXACT

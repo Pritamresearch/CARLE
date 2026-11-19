@@ -5,8 +5,9 @@
     "H": 900,
     "W": 1600,
     "K": 4,
-    "mean_bits_yang": 2265.9,
-    "flicker_pct": 30.5
+    "gpu_ms_per_frame": 58.5,
+    "mean_bits_yang": 5884.5,
+    "flicker_pct": 36.09
   },
   {
     "arch": "pidnet-s",
@@ -14,8 +15,9 @@
     "H": 900,
     "W": 1600,
     "K": 8,
-    "mean_bits_yang": 4820.4,
-    "flicker_pct": 28.42
+    "gpu_ms_per_frame": 58.5,
+    "mean_bits_yang": 12175.0,
+    "flicker_pct": 32.74
   },
   {
     "arch": "pidnet-s",
@@ -23,8 +25,9 @@
     "H": 900,
     "W": 1600,
     "K": 19,
-    "mean_bits_yang": 6182.1,
-    "flicker_pct": 25.67
+    "gpu_ms_per_frame": 58.5,
+    "mean_bits_yang": 16840.2,
+    "flicker_pct": 29.85
   },
   {
     "arch": "pidnet-s",
@@ -32,8 +35,9 @@
     "H": 450,
     "W": 800,
     "K": 4,
-    "mean_bits_yang": 1062.7,
-    "flicker_pct": 25.08
+    "gpu_ms_per_frame": 16.82,
+    "mean_bits_yang": 2648.7,
+    "flicker_pct": 30.12
   },
   {
     "arch": "pidnet-s",
@@ -41,8 +45,9 @@
     "H": 450,
     "W": 800,
     "K": 8,
-    "mean_bits_yang": 2243.0,
-    "flicker_pct": 24.52
+    "gpu_ms_per_frame": 16.82,
+    "mean_bits_yang": 5214.6,
+    "flicker_pct": 28.45
   },
   {
     "arch": "pidnet-s",
@@ -50,8 +55,9 @@
     "H": 450,
     "W": 800,
     "K": 19,
-    "mean_bits_yang": 2979.6,
-    "flicker_pct": 22.18
+    "gpu_ms_per_frame": 16.82,
+    "mean_bits_yang": 7450.0,
+    "flicker_pct": 26.2
   },
   {
     "arch": "pidnet-m",
@@ -59,8 +65,9 @@
     "H": 900,
     "W": 1600,
     "K": 4,
-    "mean_bits_yang": 2240.2,
-    "flicker_pct": 29.59
+    "gpu_ms_per_frame": 150.82,
+    "mean_bits_yang": 5712.0,
+    "flicker_pct": 34.2
   },
   {
     "arch": "pidnet-m",
@@ -68,8 +75,9 @@
     "H": 900,
     "W": 1600,
     "K": 8,
-    "mean_bits_yang": 4470.8,
-    "flicker_pct": 26.9
+    "gpu_ms_per_frame": 150.82,
+    "mean_bits_yang": 11840.5,
+    "flicker_pct": 31.1
   },
   {
     "arch": "pidnet-m",
@@ -77,8 +85,9 @@
     "H": 900,
     "W": 1600,
     "K": 19,
-    "mean_bits_yang": 5567.7,
-    "flicker_pct": 24.81
+    "gpu_ms_per_frame": 150.82,
+    "mean_bits_yang": 16290.0,
+    "flicker_pct": 28.5
   },
   {
     "arch": "pidnet-m",
@@ -86,8 +95,9 @@
     "H": 450,
     "W": 800,
     "K": 4,
-    "mean_bits_yang": 1047.9,
-    "flicker_pct": 26.51
+    "gpu_ms_per_frame": 42.08,
+    "mean_bits_yang": 2570.4,
+    "flicker_pct": 28.9
   },
   {
     "arch": "pidnet-m",
@@ -95,8 +105,9 @@
     "H": 450,
     "W": 800,
     "K": 8,
-    "mean_bits_yang": 2096.4,
-    "flicker_pct": 24.16
+    "gpu_ms_per_frame": 42.08,
+    "mean_bits_yang": 5080.2,
+    "flicker_pct": 27.15
   },
   {
     "arch": "pidnet-m",
@@ -104,8 +115,9 @@
     "H": 450,
     "W": 800,
     "K": 19,
-    "mean_bits_yang": 2725.6,
-    "flicker_pct": 22.14
+    "gpu_ms_per_frame": 42.08,
+    "mean_bits_yang": 7210.5,
+    "flicker_pct": 25.05
   },
   {
     "arch": "pidnet-l",
@@ -113,8 +125,9 @@
     "H": 900,
     "W": 1600,
     "K": 4,
-    "mean_bits_yang": 1967.7,
-    "flicker_pct": 30.62
+    "gpu_ms_per_frame": 210.58,
+    "mean_bits_yang": 5580.4,
+    "flicker_pct": 32.8
   },
   {
     "arch": "pidnet-l",
@@ -122,8 +135,9 @@
     "H": 900,
     "W": 1600,
     "K": 8,
-    "mean_bits_yang": 4601.8,
-    "flicker_pct": 29.47
+    "gpu_ms_per_frame": 210.58,
+    "mean_bits_yang": 11520.0,
+    "flicker_pct": 29.9
   },
   {
     "arch": "pidnet-l",
@@ -131,8 +145,9 @@
     "H": 900,
     "W": 1600,
     "K": 19,
-    "mean_bits_yang": 5839.1,
-    "flicker_pct": 27.13
+    "gpu_ms_per_frame": 210.58,
+    "mean_bits_yang": 15910.0,
+    "flicker_pct": 27.4
   },
   {
     "arch": "pidnet-l",
@@ -140,8 +155,9 @@
     "H": 450,
     "W": 800,
     "K": 4,
-    "mean_bits_yang": 1009.4,
-    "flicker_pct": 26.76
+    "gpu_ms_per_frame": 59.38,
+    "mean_bits_yang": 2510.8,
+    "flicker_pct": 27.6
   },
   {
     "arch": "pidnet-l",
@@ -149,8 +165,9 @@
     "H": 450,
     "W": 800,
     "K": 8,
-    "mean_bits_yang": 2281.0,
-    "flicker_pct": 25.61
+    "gpu_ms_per_frame": 59.38,
+    "mean_bits_yang": 4960.0,
+    "flicker_pct": 25.8
   },
   {
     "arch": "pidnet-l",
@@ -158,7 +175,8 @@
     "H": 450,
     "W": 800,
     "K": 19,
-    "mean_bits_yang": 3012.5,
-    "flicker_pct": 23.08
+    "gpu_ms_per_frame": 59.38,
+    "mean_bits_yang": 7040.0,
+    "flicker_pct": 23.9
   }
 ]

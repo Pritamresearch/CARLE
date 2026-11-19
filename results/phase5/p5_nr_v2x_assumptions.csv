@@ -1,0 +1,16 @@
+Parameter,Value
+Standard Specification,"3GPP Release 16 / 17 NR-V2X (TS 38.211, TS 38.214, TS 38.215, TS 38.331)"
+Operating Carrier / Band,"5.9 GHz Dedicated ITS Spectrum (Band n47, FR1)"
+Channel Bandwidth,20 MHz
+Subcarrier Spacing (SCS),30 kHz (Numerology mu = 1)
+Slot Duration (T_slot),"0.5 ms (2,000 slots per second)"
+Total Usable Bandwidth (PRBs),51 PRBs (per 3GPP TS 38.101-1 Table 5.3.2-1)
+Subchannel Sizes Analyzed,"10 PRBs (5 subchannels/slot), 25 PRBs (2 subchannels/slot), 50 PRBs (1 subchannel/slot)"
+Slot Structure (OFDM Symbols),"14 symbols: 1 AGC (sym 0), 1 Guard (sym 13), 3 DMRS (sym 4, 8, 11), 9 PSSCH data symbols"
+Net REs per PRB for PSSCH Data,110 REs/PRB (net of PSCCH SCI-1 and 2nd-stage SCI-2 overhead)
+MCS Operating Points Analyzed,"MCS 6 (QPSK ~1/2), MCS 9 (QPSK ~2/3), MCS 11 (16QAM ~1/2), MCS 16 (16QAM ~3/4), MCS 24 (64QAM ~3/4)"
+Channel Congestion Limit (CR_max),0.60 (60% Channel Busy Ratio limit per 3GPP DCC Mode 2 to prevent collision collapse)
+Blind Retransmissions (K_tx),0 (1 transmission total) or 1 (2 transmissions total per transport block)
+V2X Sharing Frequency,10 Hz (10 transmissions/second per stream)
+Surround Cameras per Vehicle,6 surround cameras (360-degree coverage)
+Latency Budget,100 ms max delivery window (satisfies 10 Hz real-time vehicular control)

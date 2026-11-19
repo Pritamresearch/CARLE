@@ -1,0 +1,21 @@
+K,Dataset,N_Frames,Codec,Bits/Frame,95% CI Lower,95% CI Upper,1-Cam 10Hz (kb/s),6-Cam 10Hz (kb/s),Gain vs SemCM(a) (%)
+4,nuScenes_Keyframes_2Hz,2424,Yang et al. 2026,5980.1,5408.5,6577.4,59.8,358.81,45.97
+4,nuScenes_Keyframes_2Hz,2424,SemCM (a) [Frame-Indep] (Frozen Ref),11068.4,10124.0,11962.1,110.68,664.11,0.0
+4,nuScenes_Keyframes_2Hz,2424,JPEG-XL (Effort 9),19608.8,18129.7,21026.4,196.09,1176.53,-77.16
+4,nuScenes_Keyframes_2Hz,2424,WebP Lossless,21869.3,19912.5,23922.0,218.69,1312.16,-97.58
+4,nuScenes_Keyframes_2Hz,2424,PNG (OpenCV level 9),49391.2,46519.1,52311.0,493.91,2963.47,-346.23
+4,nuScenes_Sweeps_12Hz,6000,Yang et al. 2026,5884.5,5265.8,6531.2,58.85,353.07,45.94
+4,nuScenes_Sweeps_12Hz,6000,SemCM (a) [Frame-Indep] (Frozen Ref),10884.4,9856.6,11897.8,108.84,653.07,0.0
+4,nuScenes_Sweeps_12Hz,6000,JPEG-XL (Effort 9),19405.2,17836.9,20973.4,194.05,1164.31,-78.28
+4,nuScenes_Sweeps_12Hz,6000,WebP Lossless,21426.9,19165.0,23605.8,214.27,1285.61,-96.86
+4,nuScenes_Sweeps_12Hz,6000,PNG (OpenCV level 9),48803.0,45785.2,52098.5,488.03,2928.18,-348.38
+4,Field_Native,3673,Yang et al. 2026,3289.7,1858.1,6111.9,32.9,197.38,44.28
+4,Field_Native,3673,SemCM (a) [Frame-Indep] (Frozen Ref),5904.4,3673.3,10342.8,59.04,354.27,0.0
+4,Field_Native,3673,JPEG-XL (Effort 9),9347.6,5404.5,16967.9,93.48,560.86,-58.32
+4,Field_Native,3673,WebP Lossless,12668.3,7210.7,22892.8,126.68,760.1,-114.56
+4,Field_Native,3673,PNG (OpenCV level 9),25483.8,16012.4,43520.5,254.84,1529.03,-331.6
+4,Field_10Hz,1399,Yang et al. 2026,3704.8,1752.1,6233.5,37.05,222.29,43.5
+4,Field_10Hz,1399,SemCM (a) [Frame-Indep] (Frozen Ref),6557.0,3752.9,10581.2,65.57,393.42,0.0
+4,Field_10Hz,1399,JPEG-XL (Effort 9),10451.1,5710.3,17254.9,104.51,627.07,-59.39
+4,Field_10Hz,1399,WebP Lossless,14168.5,7232.9,23435.2,141.68,850.11,-116.08
+4,Field_10Hz,1399,PNG (OpenCV level 9),28139.5,16667.9,44378.2,281.4,1688.37,-329.16

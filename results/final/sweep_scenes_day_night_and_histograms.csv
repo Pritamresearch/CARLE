@@ -1,0 +1,31 @@
+Model,Scene,Condition,Description,Road_Pct,Vehicle_Pct,VRU_Pct,Other_Pct,Uniform_Frames,Total_Frames,Uniform_Frames_Pct,Mean_Yang_Bits
+pidnet-s,scene-0061,Day,"Parked truck, construction, intersection, turn left, following a van",25.88,4.82,1.26,68.05,0,600,0.0,3673.8
+pidnet-s,scene-0103,Day,"Many peds right, wait for turning car, long bike rack left, cyclist",22.78,3.38,1.61,72.23,0,600,0.0,2647.44
+pidnet-s,scene-0553,Day,"Wait at intersection, bicycle, large truck, peds crossing crosswalk, ped with stroller",27.02,10.41,1.45,61.12,0,600,0.0,3423.11
+pidnet-s,scene-0655,Day,"Parking lot, parked cars, jaywalker, bendy bus, gardening vehicles",21.55,14.51,0.19,63.75,0,600,0.0,2870.64
+pidnet-s,scene-0757,Day,"Arrive at busy intersection, bus, wait at intersection, bicycle, peds",21.72,1.59,0.17,76.52,0,600,0.0,1987.89
+pidnet-s,scene-0796,Day,"Scooter, peds on sidewalk, bus, cars, truck, fake construction worker, bicycle, cross intersection, car overtaking us",25.04,2.22,0.74,72.0,0,600,0.0,2876.55
+pidnet-s,scene-0916,Day,"Parking lot, bicycle rack, parked bicycles, bus, many peds, parked scooters, parked motorcycle",26.32,7.16,2.41,64.11,0,600,0.0,3083.75
+pidnet-s,scene-1077,Night,"Night, big street, bus stop, high speed, construction vehicle",2.14,17.16,0.02,80.69,76,600,12.67,1635.48
+pidnet-s,scene-1094,Night,"Night, after rain, many peds, PMD, ped with bag, jaywalker, truck, scooter",9.4,3.77,0.6,86.23,22,600,3.67,2505.69
+pidnet-s,scene-1100,Night,"Night, peds in sidewalk, peds cross crosswalk, scooter, PMD, difficult lighting",10.45,0.74,0.18,88.63,25,600,4.17,1788.16
+pidnet-m,scene-0061,Day,"Parked truck, construction, intersection, turn left, following a van",24.65,6.07,1.88,67.4,0,600,0.0,4285.84
+pidnet-m,scene-0103,Day,"Many peds right, wait for turning car, long bike rack left, cyclist",22.69,3.71,1.63,71.96,0,600,0.0,2628.83
+pidnet-m,scene-0553,Day,"Wait at intersection, bicycle, large truck, peds crossing crosswalk, ped with stroller",26.59,13.55,1.68,58.19,0,600,0.0,3854.43
+pidnet-m,scene-0655,Day,"Parking lot, parked cars, jaywalker, bendy bus, gardening vehicles",20.88,14.95,0.2,63.98,0,600,0.0,2838.37
+pidnet-m,scene-0757,Day,"Arrive at busy intersection, bus, wait at intersection, bicycle, peds",22.32,2.0,0.37,75.31,1,600,0.17,2469.55
+pidnet-m,scene-0796,Day,"Scooter, peds on sidewalk, bus, cars, truck, fake construction worker, bicycle, cross intersection, car overtaking us",27.6,2.22,1.76,68.42,0,600,0.0,4109.61
+pidnet-m,scene-0916,Day,"Parking lot, bicycle rack, parked bicycles, bus, many peds, parked scooters, parked motorcycle",27.29,7.12,2.5,63.09,0,600,0.0,3284.85
+pidnet-m,scene-1077,Night,"Night, big street, bus stop, high speed, construction vehicle",53.38,1.67,0.11,44.84,0,600,0.0,8989.49
+pidnet-m,scene-1094,Night,"Night, after rain, many peds, PMD, ped with bag, jaywalker, truck, scooter",20.24,3.25,1.08,75.44,0,600,0.0,5845.56
+pidnet-m,scene-1100,Night,"Night, peds in sidewalk, peds cross crosswalk, scooter, PMD, difficult lighting",21.85,1.58,0.19,76.37,0,600,0.0,4437.52
+pidnet-l,scene-0061,Day,"Parked truck, construction, intersection, turn left, following a van",23.88,3.83,1.41,70.89,0,600,0.0,3640.92
+pidnet-l,scene-0103,Day,"Many peds right, wait for turning car, long bike rack left, cyclist",21.78,3.19,1.53,73.49,0,600,0.0,2506.27
+pidnet-l,scene-0553,Day,"Wait at intersection, bicycle, large truck, peds crossing crosswalk, ped with stroller",26.79,10.48,1.98,60.75,0,600,0.0,2873.07
+pidnet-l,scene-0655,Day,"Parking lot, parked cars, jaywalker, bendy bus, gardening vehicles",21.23,14.17,0.22,64.37,0,600,0.0,2831.93
+pidnet-l,scene-0757,Day,"Arrive at busy intersection, bus, wait at intersection, bicycle, peds",15.95,1.48,0.09,82.48,51,600,8.5,1239.03
+pidnet-l,scene-0796,Day,"Scooter, peds on sidewalk, bus, cars, truck, fake construction worker, bicycle, cross intersection, car overtaking us",25.85,2.07,1.06,71.03,0,600,0.0,3166.61
+pidnet-l,scene-0916,Day,"Parking lot, bicycle rack, parked bicycles, bus, many peds, parked scooters, parked motorcycle",26.35,6.98,2.03,64.64,0,600,0.0,3024.68
+pidnet-l,scene-1077,Night,"Night, big street, bus stop, high speed, construction vehicle",2.04,0.03,0.01,97.92,347,600,57.83,514.59
+pidnet-l,scene-1094,Night,"Night, after rain, many peds, PMD, ped with bag, jaywalker, truck, scooter",5.41,0.34,0.5,93.75,206,600,34.33,1225.37
+pidnet-l,scene-1100,Night,"Night, peds in sidewalk, peds cross crosswalk, scooter, PMD, difficult lighting",4.32,0.09,0.32,95.27,82,600,13.67,945.19

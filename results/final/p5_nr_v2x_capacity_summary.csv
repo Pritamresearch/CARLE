@@ -1,0 +1,11 @@
+K,Codec,Mode,Source_Column,Mean_Payload_Bytes,P50_Payload_Bytes,P95_Payload_Bytes,P99_Payload_Bytes,Mean_Subch_Per_Frame,P95_Subch_Per_Frame,P99_Subch_Per_Frame,Usable_Subch_Per_Sec,Cameras_10Hz,Vehicles_10Hz,Cameras_12Hz,Vehicles_12Hz
+4,Yang,Whole (S=1),yang_bits,343.1,334.0,662.1,899.0,1.634,3.0,3.0,6000,367,61,305,50
+4,SemCM (a),Whole (S=1),semcm_a_bits,582.1,580.0,1054.0,1399.0,2.409,4.0,5.0,6000,249,41,207,34
+4,JPEG-XL e9,Whole (S=1),jxl9_bits,890.8,900.0,1531.2,1886.0,3.376,5.0,7.0,6000,177,29,148,24
+4,WebP Lossless,Whole (S=1),webp_bits,1164.6,1166.0,2148.0,2934.0,4.274,7.0,10.0,6000,140,23,116,19
+4,Yang,Slices (S=4),p2_per_frame_per_slice_bytes.csv (S=4),408.4,398.0,743.0,995.0,4.294,5.0,6.0,6000,139,23,116,19
+8,Yang,Whole (S=1),yang_bits,692.1,690.0,1178.1,1378.0,2.735,4.0,5.0,6000,219,36,182,30
+8,SemCM (a),Whole (S=1),semcm_a_bits,1342.9,1364.5,2195.1,2502.0,4.843,8.0,9.0,6000,123,20,103,17
+8,JPEG-XL e9,Whole (S=1),jxl9_bits,1605.0,1678.0,2457.0,2794.2,5.692,8.0,10.0,6000,105,17,87,14
+8,WebP Lossless,Whole (S=1),webp_bits,2357.0,2419.0,3826.0,4366.1,8.123,13.0,15.0,6000,73,12,61,10
+8,Yang,Slices (S=4),p2_per_frame_per_slice_bytes.csv (S=4),775.4,774.0,1284.0,1490.0,4.821,6.0,7.0,6000,124,20,103,17

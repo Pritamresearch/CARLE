@@ -1,0 +1,17 @@
+K,Dataset,Temporal_Variant,SemCM_a_BPF,Temporal_BPF,Gain_vs_SemCM_a (%),95% CI Lower,95% CI Upper
+4,Field_10Hz,Compact Temporal,12184.5,9637.1,20.91,17.87,27.15
+4,Field_10Hz,Compact Temporal + Global MC,12184.5,9707.8,20.33,17.84,25.58
+4,Field_Native,Compact Temporal,12194.2,9532.4,21.83,18.54,28.62
+4,Field_Native,Compact Temporal + Global MC,12194.2,9534.8,21.81,18.5,28.36
+4,nuScenes_Keyframes_2Hz,Compact Temporal,21458.2,16101.3,24.96,22.92,27.33
+4,nuScenes_Keyframes_2Hz,Compact Temporal + Global MC,21458.2,16089.2,25.02,23.04,27.3
+4,nuScenes_Sweeps_12Hz,Compact Temporal,22033.2,16809.0,23.71,22.35,25.36
+4,nuScenes_Sweeps_12Hz,Compact Temporal + Global MC,22033.2,16760.4,23.93,22.51,25.66
+8,Field_10Hz,Compact Temporal,20002.3,17451.5,12.75,10.99,15.35
+8,Field_10Hz,Compact Temporal + Global MC,20002.3,17517.0,12.43,10.68,15.12
+8,Field_Native,Compact Temporal,19492.6,16685.9,14.4,12.08,17.87
+8,Field_Native,Compact Temporal + Global MC,19492.6,16658.5,14.54,11.84,18.06
+8,nuScenes_Keyframes_2Hz,Compact Temporal,35945.3,32858.3,8.59,7.47,9.99
+8,nuScenes_Keyframes_2Hz,Compact Temporal + Global MC,35945.3,32885.4,8.51,7.41,9.87
+8,nuScenes_Sweeps_12Hz,Compact Temporal,36805.8,33656.7,8.56,7.28,10.23
+8,nuScenes_Sweeps_12Hz,Compact Temporal + Global MC,36805.8,33595.1,8.72,7.51,10.29
