@@ -1,0 +1,10 @@
+X1 SANITY CHECKS (smoke=False)
+============================================================
+Realised packet loss for Bernoulli      : 9.90% (target: 10.00%)
+Realised packet loss for Burst_TB50ms   : 9.90% (target: 10.00%)
+Realised packet loss for Burst_TB100ms  : 9.90% (target: 10.00%)
+Bernoulli chain_S1 mean AoI: 112.56 ms
+Theoretical AoI (103.4 + dt*p/(1-p)): 112.57 ms (p=0.0992)
+Difference: -0.02 ms
+Verified chain_S1 trials count: 60 streams x 100 trials
+============================================================

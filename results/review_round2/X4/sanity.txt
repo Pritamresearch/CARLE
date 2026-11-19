@@ -1,0 +1,16 @@
+X4 SANITY CHECKS (smoke=False)
+============================================================
+Total stream rows: 1800
+Total class IoU rows: 1800
+
+--- K=4 Aggregates ---
+lossless  : bits= 2648.7 bpf, pixel_acc= 99.41%, AoI=112.54 ms
+down2     : bits= 1616.7 bpf, pixel_acc= 99.12%, AoI=112.54 ms
+down4     : bits=  967.5 bpf, pixel_acc= 98.24%, AoI=112.54 ms
+
+--- K=8 Aggregates ---
+lossless  : bits= 5440.6 bpf, pixel_acc= 98.73%, AoI=112.63 ms
+down2     : bits= 3340.9 bpf, pixel_acc= 98.14%, AoI=112.63 ms
+down4     : bits= 2002.9 bpf, pixel_acc= 96.45%, AoI=112.63 ms
+
+============================================================

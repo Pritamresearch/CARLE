@@ -1,0 +1,9 @@
+X3 SANITY CHECKS (smoke=False)
+==================================================
+Total frames evaluated: 12000
+Codec: JPEG-LS (charls 2.4.5)
+Number with decode_ok = 1: 12000
+Number with decode_ok = 0: 0
+Mean bits K=4: 12072.0 bpf
+Mean bits K=8: 24335.0 bpf
+==================================================

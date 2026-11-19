@@ -1,0 +1,13 @@
+X2 SANITY CHECKS (smoke=False)
+==================================================
+Total frames evaluated: 12000 (K=4: 6000, K=8: 6000)
+Mean intra_bits at K=4: 4536.69 bpf
+P1b reference value   : 4554.10 bpf
+Difference vs P1b     : -0.38%
+Decode ok intra       : 12000/12000 bit-exact
+Decode ok persistent  : 12000/12000 bit-exact
+Decode ok temp        : 12000/12000 bit-exact
+Mean persistent_bits K=4: 4399.01 bpf
+Mean compact_temp_bits K=4: 4163.01 bpf
+Temporal ratio K=4 (temp/intra): 0.9176
+==================================================

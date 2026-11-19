@@ -1,0 +1,4 @@
+experiment,item,reason
+X3,JBIG2,jbig2enc executable not found in system PATH or repository
+X3,CC-SMC,No official source code or repository released for Yang et al. (JVCIR 2024)
+X5,Yang ECC in-process timing,Yang ECC in repository only available as standalone compiled executables (encoder.exe/decoder.exe) with non-reentrant global state; no in-process C/C++ library or shared library interface provided

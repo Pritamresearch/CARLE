@@ -1,0 +1,8 @@
+X5 SANITY CHECKS (smoke=False)
+============================================================
+Target: Yang ECC in-process encode/decode timing (600 frames x 15 runs)
+In-process shared library available: False
+Status: BLOCKED - Yang ECC in repository only available as standalone compiled executables (encoder.exe/decoder.exe) with non-reentrant global state; no in-process C/C++ library or shared library interface provided
+Subprocess timing was explicitly forbidden by specification.
+Recorded to results/review_round2/BLOCKED.csv.
+============================================================
