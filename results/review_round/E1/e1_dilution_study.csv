@@ -1,0 +1,5 @@
+Train_Scenes_Count,Train_Scenes,Test_Scene,Mean_Bits_Per_Frame,Status
+1,scene-0103,scene-0061,7545.2,AVAILABLE
+5,scene-0103;scene-0553;scene-0655;scene-0757;scene-0796,scene-0061,6808.08,AVAILABLE
+9,scene-0103;scene-0553;scene-0655;scene-0757;scene-0796;scene-0916;scene-1077;scene-1094;scene-1100,scene-0061,6668.64,AVAILABLE
+20,N/A,scene-0061,,NOT RUN (nuScenes mini contains only 10 scenes)
